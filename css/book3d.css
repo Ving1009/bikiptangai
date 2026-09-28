@@ -62,6 +62,22 @@
   cursor: pointer;
 }
 
+/* Mép bọc bìa 3D ở cạnh ngoài tạo cảm giác bản gỗ/gấm có độ dày thực */
+.book-cover-front::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(90deg, #8e622b 0%, #d4af37 40%, #5a3818 100%);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.5);
+  transform-origin: left center;
+  transform: rotateY(90deg);
+  pointer-events: none;
+}
+
 /* Khi mở sách, bìa trước lật 180 độ sang trái */
 .book-cover-front.cover-opened {
   transform: rotateY(-180deg);
@@ -86,13 +102,13 @@
 
 .cover-front-face {
   background: 
-    radial-gradient(ellipse at 50% 40%, rgba(212, 175, 55, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse at var(--light-x, 50%) var(--light-y, 40%), rgba(255, 220, 120, 0.22) 0%, rgba(212, 175, 55, 0.08) 40%, transparent 70%),
     linear-gradient(135deg, #3d1b11 0%, #240f09 60%, #150805 100%);
   border: 4px solid #8e622b;
   box-shadow: 
-    inset 0 0 40px rgba(0, 0, 0, 0.8),
-    inset 0 0 10px rgba(212, 175, 55, 0.4),
-    -6px 0 15px rgba(0, 0, 0, 0.5);
+    inset 0 0 45px rgba(0, 0, 0, 0.85),
+    inset 0 0 12px rgba(212, 175, 55, 0.45),
+    -8px 8px 25px rgba(0, 0, 0, 0.65);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,6 +135,7 @@
   border-style: solid;
   border-color: #d4af37;
   pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
 }
 .corner-tl { top: 8px; left: 8px; border-width: 3px 0 0 3px; }
 .corner-tr { top: 8px; right: 8px; border-width: 3px 3px 0 0; }
@@ -152,14 +169,17 @@
 
 .cover-sub-seal {
   display: inline-block;
-  background: var(--seal-red);
+  background: linear-gradient(135deg, #c0392b 0%, #96281b 100%);
+  border: 1px solid var(--gold-bright);
   color: #fff;
-  padding: 3px 12px;
+  padding: 3px 14px;
   font-family: var(--font-calligraphy);
   font-size: 13px;
   letter-spacing: 3px;
   border-radius: 2px;
-  box-shadow: 0 0 10px var(--seal-glow);
+  box-shadow: 
+    0 0 10px var(--seal-glow),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
   margin-bottom: 12px;
 }
 
@@ -169,9 +189,13 @@
   line-height: 1.15;
   color: #fce8a6;
   text-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.9),
-    0 0 20px rgba(230, 180, 34, 0.5);
-  letter-spacing: 3px;
+    0 1px 0 #ffd700,
+    0 2px 0 #c59b27,
+    0 3px 0 #8e622b,
+    0 4px 2px rgba(0, 0, 0, 0.6),
+    0 8px 18px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(230, 180, 34, 0.5);
+  letter-spacing: 4px;
 }
 
 .cover-desc-text {
@@ -190,8 +214,11 @@
   width: 85px;
   height: 85px;
   border: 3px solid var(--seal-red-bright);
-  background: rgba(192, 57, 43, 0.85);
-  box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+  background: radial-gradient(circle at 35% 35%, #e74c3c 0%, #c0392b 60%, #96281b 100%);
+  box-shadow: 
+    0 0 20px rgba(231, 76, 60, 0.6),
+    inset 0 0 10px rgba(0, 0, 0, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -201,6 +228,11 @@
   border-radius: 4px;
   margin: 10px 0;
   transform: rotate(-3deg);
+  transition: transform var(--transition-fast);
+}
+
+.cover-red-stamp:hover {
+  transform: rotate(-1deg) scale(1.05);
 }
 
 .stamp-inner-text {
@@ -232,21 +264,46 @@
   left: calc(50% - 18px);
   width: 36px;
   height: 100%;
-  background: linear-gradient(90deg, #190904 0%, #3d1b11 50%, #190904 100%);
+  background: linear-gradient(90deg, 
+    #100603 0%, 
+    #240f09 25%, 
+    #4a2115 50%, 
+    #240f09 75%, 
+    #100603 100%
+  );
   border-top: 4px solid #8e622b;
   border-bottom: 4px solid #8e622b;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+  box-shadow: 
+    inset 0 0 15px rgba(0,0,0,0.85),
+    0 5px 15px rgba(0, 0, 0, 0.45);
   z-index: 15;
 }
 
-/* Các đường chỉ khâu gáy sách cổ điển */
+/* Các đường chỉ khâu gáy sách cổ điển với lỗ đục chỉ 3D */
 .spine-stitch {
   position: absolute;
   width: 100%;
   height: 3px;
-  background: #d4af37;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  background: linear-gradient(180deg, #ffd700 0%, #d4af37 60%, #8e622b 100%);
+  box-shadow: 
+    0 1px 3px rgba(0,0,0,0.8),
+    0 0 4px rgba(212, 175, 55, 0.4);
 }
+
+.spine-stitch::before,
+.spine-stitch::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  width: 4px;
+  height: 7px;
+  background: #0d0502;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.95);
+}
+.spine-stitch::before { left: 4px; }
+.spine-stitch::after { right: 4px; }
+
 .stitch-1 { top: 60px; }
 .stitch-2 { top: 180px; }
 .stitch-3 { top: 320px; }
@@ -290,6 +347,19 @@
     0 10px 30px rgba(0, 0, 0, 0.6);
   z-index: 2;
   pointer-events: none;
+  transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Khi sách mở: bìa sau mở rộng thành đế bọc da nâng đỡ cả 2 trang sách */
+.book-state-open .book-cover-back {
+  left: -8px;
+  width: calc(100% + 16px);
+  top: -6px;
+  height: calc(100% + 12px);
+  border-radius: 8px;
+  box-shadow: 
+    inset 0 0 40px rgba(0, 0, 0, 0.85),
+    0 25px 45px rgba(0, 0, 0, 0.7);
 }
 
 /* ==========================================
@@ -303,6 +373,62 @@
   z-index: 10;
   transform-style: preserve-3d;
   perspective: 2600px;
+}
+
+/* Khối giấy xếp lớp bên mép trái khi sách mở ra */
+.book-spread-open::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -14px;
+  width: 15px;
+  height: calc(100% - 12px);
+  background: repeating-linear-gradient(
+    90deg,
+    #eeddbb 0px,
+    #d9c59c 1px,
+    #e8d5af 2px,
+    #beaa81 3px
+  );
+  box-shadow: 
+    inset 0 0 6px rgba(0, 0, 0, 0.35),
+    -4px 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 4px 0 0 4px;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+.book-state-open .book-spread-open::before {
+  opacity: 1;
+}
+
+/* Khối mép giấy đáy sách khi mở */
+.book-spread-open::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 6px;
+  right: 6px;
+  height: 6px;
+  background: repeating-linear-gradient(
+    0deg,
+    #beaa81 0px,
+    #d9c59c 1px,
+    #eeddbb 2px,
+    #e8d5af 3px
+  );
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 4px 4px;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+.book-state-open .book-spread-open::after {
+  opacity: 1;
 }
 
 /* Khi sách đang đóng, ẩn trang trái để bìa trước chiếm trọn tâm điểm */
@@ -320,7 +446,7 @@
   transition: opacity 0.5s ease 0.35s;
 }
 
-/* Trang Trái & Trang Phải */
+/* Trang Trái & Trang Phải với vòm cong 3D tự nhiên */
 .book-page {
   position: relative;
   width: 50%;
@@ -337,18 +463,24 @@
 
 .book-page-left {
   border-radius: 8px 0 0 8px;
+  transform-origin: right center;
+  transform: rotateY(1.8deg) translateZ(1px);
   /* Bóng đổ sâu vào gáy sách ở bên phải */
   box-shadow: 
     inset 0 0 30px rgba(180, 140, 80, 0.2),
-    inset -25px 0 30px rgba(0, 0, 0, 0.22);
+    inset -30px 0 32px rgba(0, 0, 0, 0.25),
+    -6px 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 .book-page-right {
   border-radius: 0 8px 8px 0;
+  transform-origin: left center;
+  transform: rotateY(-1.8deg) translateZ(1px);
   /* Bóng đổ sâu vào gáy sách ở bên trái */
   box-shadow: 
     inset 0 0 30px rgba(180, 140, 80, 0.2),
-    inset 25px 0 30px rgba(0, 0, 0, 0.22);
+    inset 30px 0 32px rgba(0, 0, 0, 0.25),
+    6px 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 /* Nút lật lại chương trước */
@@ -393,18 +525,19 @@
   border: 1px solid rgba(212, 175, 55, 0.35);
 }
 
-/* Dây Đánh Dấu Sách (Silk Bookmark Ribbon) */
+/* Dây Đánh Dấu Sách (Silk Bookmark Ribbon) với tua rua chỉ vàng */
 .silk-bookmark {
   position: absolute;
   top: -10px;
   left: calc(50% - 14px);
   width: 28px;
   height: 220px;
-  background: linear-gradient(180deg, #b32a15 0%, #80180a 80%, #520f06 100%);
+  background: linear-gradient(180deg, #b32a15 0%, #80180a 75%, #520f06 100%);
   border-radius: 0 0 4px 4px;
   box-shadow: 
-    3px 6px 12px rgba(0, 0, 0, 0.5),
-    inset 0 0 6px rgba(255, 200, 100, 0.3);
+    3px 6px 14px rgba(0, 0, 0, 0.55),
+    inset -1px 0 3px rgba(255, 255, 255, 0.2),
+    inset 1px 0 3px rgba(0, 0, 0, 0.4);
   z-index: 25;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
   display: flex;
@@ -412,6 +545,25 @@
   align-items: center;
   justify-content: flex-end;
   padding-bottom: 25px;
+  transform-origin: top center;
+  transform: rotate(calc(var(--tilt-y, 0deg) * 0.25));
+  transition: transform 0.2s ease-out;
+}
+
+.silk-bookmark::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 14px;
+  height: 18px;
+  background: repeating-linear-gradient(
+    90deg,
+    #ffd700 0px,
+    #b8860b 2px,
+    #e6b422 4px
+  );
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
 }
 
 .bookmark-gold-tag {
@@ -495,30 +647,46 @@
 @keyframes pageFlipForward {
   0% {
     transform: rotateY(0deg) translateZ(2px);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
   }
-  30% {
-    transform: rotateY(-50deg) translateZ(50px) skewY(-2.5deg);
+  25% {
+    transform: rotateY(-45deg) translateZ(65px) skewY(-2deg) scaleX(0.98);
+    filter: drop-shadow(-15px 25px 35px rgba(0, 0, 0, 0.45));
   }
-  65% {
-    transform: rotateY(-130deg) translateZ(50px) skewY(2.5deg);
+  50% {
+    transform: rotateY(-90deg) translateZ(80px) skewY(0deg) scaleX(0.96);
+    filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.5));
+  }
+  75% {
+    transform: rotateY(-135deg) translateZ(65px) skewY(2deg) scaleX(0.98);
+    filter: drop-shadow(15px 25px 35px rgba(0, 0, 0, 0.45));
   }
   100% {
     transform: rotateY(-180deg) translateZ(2px);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
   }
 }
 
 @keyframes pageFlipBackward {
   0% {
     transform: rotateY(-180deg) translateZ(2px);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
   }
-  35% {
-    transform: rotateY(-130deg) translateZ(50px) skewY(2.5deg);
+  25% {
+    transform: rotateY(-135deg) translateZ(65px) skewY(2deg) scaleX(0.98);
+    filter: drop-shadow(15px 25px 35px rgba(0, 0, 0, 0.45));
   }
-  70% {
-    transform: rotateY(-50deg) translateZ(50px) skewY(-2.5deg);
+  50% {
+    transform: rotateY(-90deg) translateZ(80px) skewY(0deg) scaleX(0.96);
+    filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.5));
+  }
+  75% {
+    transform: rotateY(-45deg) translateZ(65px) skewY(-2deg) scaleX(0.98);
+    filter: drop-shadow(-15px 25px 35px rgba(0, 0, 0, 0.45));
   }
   100% {
     transform: rotateY(0deg) translateZ(2px);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
   }
 }
 
@@ -617,6 +785,18 @@
   );
   pointer-events: none;
   opacity: 0.6;
+}
+
+/* Bóng đổ gáy trang đang lật 3D */
+.flipper-crease-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* Bóng đổ động trên trang sách bên dưới khi lá trang lật qua */

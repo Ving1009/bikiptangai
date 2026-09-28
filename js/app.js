@@ -432,10 +432,17 @@ class App {
 
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
-      const intensity = this.isBookOpen ? 3.5 : 10;
+      const intensity = this.isBookOpen ? 4.5 : 10;
       this.targetTiltY = ((e.clientX - cx) / cx) * intensity;
       this.targetTiltX = -((e.clientY - cy) / cy) * intensity;
     });
+
+    window.addEventListener("mouseleave", () => {
+      this.targetTiltX = 0;
+      this.targetTiltY = 0;
+    });
+
+    let currentOffsetX = !this.isBookOpen && window.innerWidth > 992 ? -240 : 0;
 
     const updateTilt = () => {
       if (this.phase === "cover" || this.phase === "reading") {
@@ -444,11 +451,21 @@ class App {
 
         if (this.book3D) {
           const isMobile = window.innerWidth <= 992;
-          const offsetX = !this.isBookOpen && !isMobile ? -240 : 0;
+          const targetOffsetX = !this.isBookOpen && !isMobile ? -240 : 0;
+          currentOffsetX += (targetOffsetX - currentOffsetX) * 0.08;
+
+          // Cập nhật vị trí nguồn sáng và góc nghiêng 3D động cho CSS shader
+          const lightX = 50 + this.tiltY * 3.5;
+          const lightY = 40 - this.tiltX * 3.5;
+          this.book3D.style.setProperty("--tilt-x", `${this.tiltX.toFixed(2)}deg`);
+          this.book3D.style.setProperty("--tilt-y", `${this.tiltY.toFixed(2)}deg`);
+          this.book3D.style.setProperty("--light-x", `${lightX.toFixed(1)}%`);
+          this.book3D.style.setProperty("--light-y", `${lightY.toFixed(1)}%`);
+
           if (!this.isBookOpen) {
-            this.book3D.style.transform = `translateX(${offsetX}px) rotateX(${this.tiltX}deg) rotateY(${this.tiltY}deg)`;
+            this.book3D.style.transform = `translateX(${currentOffsetX.toFixed(1)}px) rotateX(${this.tiltX.toFixed(2)}deg) rotateY(${this.tiltY.toFixed(2)}deg)`;
           } else {
-            this.book3D.style.transform = `translateX(0px) rotateX(${this.tiltX * 0.35}deg) rotateY(${this.tiltY * 0.35}deg)`;
+            this.book3D.style.transform = `translateX(${currentOffsetX.toFixed(1)}px) rotateX(${(this.tiltX * 0.35).toFixed(2)}deg) rotateY(${(this.tiltY * 0.35).toFixed(2)}deg)`;
           }
         }
       }
