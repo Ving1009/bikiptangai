@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BÍ KÍP TÁN GÁI V2 - Tuyệt Kỹ Tình Trường Cổ Phong</title>
-  <meta name="description" content="Trải nghiệm đọc bí kíp 3D tương tác kể chuyện kết hợp chat hiện đại và phong cách cổ trang Trung Hoa.">
+  <title>BÍ KÍP TÁN GÁI - Tuyệt Kỹ Tình Trường Cổ Phong</title>
+  <meta name="description" content="Trải nghiệm đọc bí kíp 3D tương tác kết hợp chat hiện đại và phong cách cổ trang Trung Hoa.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23c0392b%22/><text y=%2265%22 x=%2250%22 text-anchor=%22middle%22 font-size=%2252%22 fill=%22%23ffd700%22 font-family=%22serif%22 font-weight=%22bold%22>BÍ</text></svg>">
   
   <!-- CSS Stylesheets -->
@@ -21,21 +21,16 @@
     <div class="brand-badge">
       <span class="brand-seal-icon">秘</span>
       <span class="brand-title-text">BÍ KÍP TÁN GÁI</span>
-      <span class="brand-version-tag">V2</span>
     </div>
 
     <div class="nav-actions">
-      <button id="fullscreen-btn" class="nav-btn" aria-label="Toàn màn hình trình chiếu trước lớp">
-        <span class="fs-icon">⛶</span>
-        <span class="btn-text">Trình chiếu</span>
-      </button>
       <button id="sound-toggle-btn" class="nav-btn" aria-label="Bật hoặc tắt âm thanh">
         <span class="sound-icon">🔊</span>
         <span class="btn-text">Âm thanh: Bật</span>
       </button>
-      <button id="reset-btn" class="nav-btn" aria-label="Chơi lại từ đầu">
+      <button id="reset-btn" class="nav-btn" aria-label="Đọc lại từ đầu">
         <span class="reset-icon">🔄</span>
-        <span class="btn-text">Chơi lại</span>
+        <span class="btn-text">Đọc lại</span>
       </button>
     </div>
   </header>
@@ -121,18 +116,8 @@
         <!-- HAI TRANG SÁCH MỞ KHI ĐỌC (SPREAD: LEFT | RIGHT) -->
         <div id="reading-ui" class="book-spread-open">
           
-          <!-- Thanh chuyển trang trên Mobile (Chỉ hiện trên màn hình <= 992px) -->
-          <div class="mobile-book-tabs" role="tablist" aria-label="Chọn trang sách trên điện thoại">
-            <button id="tab-left-page" class="mobile-tab-btn active" role="tab" aria-selected="true">
-              📜 Tâm Pháp
-            </button>
-            <button id="tab-right-page" class="mobile-tab-btn" role="tab" aria-selected="false">
-              💬 Truyền Tin
-            </button>
-          </div>
-
-          <!-- TRANG TRÁI: BỐI CẢNH & TÂM PHÁP -->
-          <article id="book-page-left" class="book-page book-page-left" role="region" aria-label="Trang trái - Tâm pháp tình trường">
+          <!-- TRANG TRÁI: BỐI CẢNH & LỜI BÌNH TIỀN NHÂN -->
+          <article id="book-page-left" class="book-page book-page-left">
             <div class="page-inner-border"></div>
             
             <div class="left-page-content">
@@ -162,39 +147,29 @@
                   Bạn và Thanh Thảo tình cờ ngồi đối diện nhau tại quán cafe sách. Thảo đang loay hoay tìm ổ cắm sạc laptop bị kẹt sâu dưới gầm bàn...
                 </p>
 
-                <!-- Lời dẫn trước khi chọn (Triết lý dẫn đường) -->
+                <!-- Lời khuyên cổ thư -->
                 <div class="chapter-wisdom-box">
                   <div class="wisdom-title">
                     <span>💡</span>
-                    <span>Tâm Pháp Khởi Điểm:</span>
+                    <span>Bí Kíp Tiền Nhân Dạy:</span>
                   </div>
                   <p id="chapter-wisdom" class="chapter-wisdom">
-                    “Vạn sự khởi đầu nan. Cuộc gặp gỡ đầu tiên như giọt nước rơi vào mặt hồ phẳng lặng, cần sự tự nhiên, chừng mực và quan sát tinh tế.”
+                    “Hành động mở đầu như giọt nước rơi vào mặt hồ, phải tự nhiên, điềm đạm, không được làm dậy sóng cuồng phong.”
                   </p>
-                </div>
-
-                <!-- Giải nghĩa tâm pháp sau khi chọn (Phân tích kỹ năng mềm) -->
-                <div id="chapter-analysis-box" class="chapter-analysis-box hidden">
-                  <div class="analysis-title">
-                    <span>🔍</span>
-                    <span>Giải Nghĩa Tâm Pháp:</span>
-                  </div>
-                  <div id="analysis-skills-tags" class="analysis-skills-tags"></div>
-                  <p id="chapter-analysis-text" class="chapter-analysis-text"></p>
                 </div>
               </div>
 
               <!-- Chân trang trái -->
               <div class="left-page-footer">
                 <span>Trang Trái: Tâm Pháp</span>
-                <span>Bí Kíp Tán Gái • Kỹ Năng Mềm</span>
+                <span>Bí Kíp Tán Gái • Cổ Thư</span>
               </div>
             </div>
             <div id="page-corner-peel-left" class="page-corner-peel-left hidden" title="Bấm vào góc để lật lại trang trước"></div>
           </article>
 
           <!-- TRANG PHẢI: KHUNG CHAT MESSENGER & 4 LỰA CHỌN -->
-          <article id="book-page-right" class="book-page book-page-right" role="region" aria-label="Trang phải - Đoạn chat và lựa chọn">
+          <article id="book-page-right" class="book-page book-page-right">
             <div class="page-inner-border"></div>
             <div id="page-corner-peel" class="page-corner-peel" title="Bấm vào góc để lật sang trang sau"></div>
 
@@ -209,10 +184,7 @@
                       <div class="chat-online-dot"></div>
                     </div>
                     <div class="chat-header-info">
-                      <div class="chat-name-row">
-                        <span class="chat-header-name">Thanh Thảo</span>
-                        <span id="relationship-badge" class="relationship-badge" title="Mức độ gắn kết cảm xúc">Mới quen</span>
-                      </div>
+                      <span class="chat-header-name">Thanh Thảo</span>
                       <span class="chat-header-status">Đang hoạt động</span>
                     </div>
                   </div>
@@ -221,21 +193,21 @@
 
                 <!-- Chat Messages Stream -->
                 <div id="chat-messages" class="chat-messages" role="log" aria-live="polite">
-                  <!-- Tin nhắn đưa vào tuần tự bằng JS -->
+                  <!-- Tin nhắn sẽ được JavaScript đưa vào tuần tự -->
                 </div>
 
                 <!-- 4 Lựa chọn trả lời -->
                 <div class="choices-wrapper">
                   <div class="choices-heading">
                     <span>Chọn Cách Ứng Đối:</span>
-                    <span id="reselect-hint" class="choice-reselect-hint">💡 Có thể chọn lại bất kỳ lúc nào để thử phản ứng của nàng</span>
+                    <span id="reselect-hint" class="choice-reselect-hint">💡 Có thể bấm lựa chọn khác bất kỳ lúc nào để thử phản ứng của nàng</span>
                   </div>
                   <div id="scenario-choices" class="choices-grid">
-                    <!-- Render từ scenarios.js -->
+                    <!-- 4 Card lựa chọn render từ scenarios.js -->
                   </div>
 
                   <!-- Nhận xét cổ thư sau khi chọn -->
-                  <div id="ancient-comment-box" class="ancient-comment-box hidden" aria-live="polite"></div>
+                  <div id="ancient-comment-box" class="ancient-comment-box hidden"></div>
 
                   <!-- Nút lật sang trang tiếp theo -->
                   <button id="btn-next-page" class="btn-next-page hidden">
@@ -286,7 +258,7 @@
         <h2 class="cinematic-text-main">“NGƯƠI ĐÃ ĐỌC XONG BÍ KÍP...”</h2>
         <p class="cinematic-text-sub">“NHƯNG LÝ THUYẾT THÔI CHƯA ĐỦ. THỰC CHIẾN MỚI THỬ LỬA ANH HÙNG!”</p>
         <button id="btn-start-minigame" class="btn-start-minigame">
-          ⚔️ BƯỚC VÀO THỬ THÁCH PHẢN XẠ ⚔️
+          ⚔️ BƯỚC VÀO THỬ THÁCH CUỐI CÙNG ⚔️
         </button>
       </div>
     </div>
@@ -312,10 +284,10 @@
         <div id="minigame-score-badge" class="mg-score-badge">Điểm: 0</div>
       </div>
 
-      <!-- Thanh Đếm Ngược -->
+      <!-- Thanh Đếm Ngược 10 Giây -->
       <div class="mg-timer-section">
         <div class="mg-timer-label-row">
-          <span>Thời gian phản xạ:</span>
+          <span>Thời gian suy nghĩ:</span>
           <span id="minigame-timer-text" class="mg-timer-text">10s</span>
         </div>
         <div class="mg-timer-track">
@@ -337,16 +309,16 @@
       </div>
 
       <!-- Banner Phản Ứng Tức Thì Của Nàng -->
-      <div id="minigame-reaction-banner" class="minigame-reaction-banner hidden" aria-live="polite">
+      <div id="minigame-reaction-banner" class="minigame-reaction-banner hidden">
         <span id="minigame-girl-reaction" class="mg-reaction-emoji">🥰</span>
-        <div id="minigame-feedback-text" class="mg-feedback-text"></div>
+        <span id="minigame-feedback-text" class="mg-feedback-text">Dí dỏm lật ngược thế cờ! Nàng bật cười thẹn thùng!</span>
       </div>
     </section>
 
     <!-- ========================================================
          4. MÀN HÌNH KẾT QUẢ VINH DANH (RESULTS SCREEN)
          ======================================================== -->
-    <section id="results-screen" class="results-screen hidden" aria-label="Màn hình kết quả vinh danh">
+    <section id="results-screen" class="results-screen hidden" aria-label="Màn hình kết quả">
       <div class="mg-corner mg-tl"></div>
       <div class="mg-corner mg-tr"></div>
       <div class="mg-corner mg-bl"></div>
@@ -354,14 +326,14 @@
 
       <!-- Results Header -->
       <div class="results-header">
-        <span class="results-super-title">BẢNG VÀNG CÔNG ĐỨC • KỸ NĂNG TÌNH TRƯỜNG</span>
+        <span class="results-super-title">BẢNG VÀNG CÔNG ĐỨC • VÕ LÂM TÌNH TRƯỜNG</span>
         <div class="results-title-group">
-          <h2 id="res-title-main" class="res-title-main">BẬC THẦY GIAO TIẾP</h2>
+          <h2 id="res-title-main" class="res-title-main">BẬC THẦY TÁN GÁI</h2>
           <span id="res-title-sub" class="res-title-sub">Cửu Dương Chân Kinh Đại Thành</span>
         </div>
       </div>
 
-      <!-- Results Body: Biểu Đồ Radar & Nhận Xét & Phân Tích -->
+      <!-- Results Body: Biểu Đồ Radar & Nhận Xét -->
       <div class="results-body">
         <!-- Cột Biểu Đồ Ngũ Giác -->
         <div class="results-chart-col">
@@ -369,49 +341,32 @@
           <span id="res-minigame-score" class="res-minigame-score">Điểm Phản Xạ: 15 / 15</span>
         </div>
 
-        <!-- Cột Nhận Xét & Con Dấu Son & Phân Tích Kỹ Năng -->
+        <!-- Cột Nhận Xét & Con Dấu Son -->
         <div class="results-eval-col">
           <div id="res-seal-stamp" class="res-seal-stamp">THẦN QUÂN</div>
           
           <div class="eval-heading">
             <span>📜</span>
-            <span>Hồ Sơ Năng Lực Giao Tiếp:</span>
+            <span>Nguyệt Lão Thần Thư Nhận Xét:</span>
           </div>
 
           <p id="res-title-desc" class="res-title-desc">
-            Bạn sở hữu năng lực giao tiếp toàn diện và chín chắn! Vừa biết lắng nghe thấu cảm, điềm đạm tự chủ, lại có khiếu hài hước duyên dáng.
+            Ngươi đã lãnh hội tuyệt đỉnh tâm pháp tình trường! Vừa biết lắng nghe, điềm đạm, lại sở hữu khiếu hài hước duyên dáng và sự tôn trọng mực thước.
           </p>
 
-          <!-- 3 Thẻ phân tích có giá trị thực tiễn cho môn Kỹ Năng Mềm -->
-          <div class="results-insights-grid">
-            <div class="insight-card insight-strength">
-              <div class="insight-label">🌟 Điểm Mạnh Nổi Bật</div>
-              <div id="res-insight-strength" class="insight-content">Khả năng lắng nghe và tôn trọng cảm xúc người khác.</div>
-            </div>
-            <div class="insight-card insight-growth">
-              <div class="insight-label">🌱 Điểm Cần Rèn Giũa</div>
-              <div id="res-insight-growth" class="insight-content">Đôi khi hơi thận trọng; có thể tự tin chủ động hơn.</div>
-            </div>
-            <div class="insight-card insight-highlight">
-              <div class="insight-label">🎯 Khoảnh Khắc Đáng Nhớ</div>
-              <div id="res-insight-moment" class="insight-content">Chương 6: Bạn chọn lắng nghe trước khi đưa ra lời khuyên.</div>
-            </div>
-          </div>
-
-          <!-- Thông điệp kết thúc cốt lõi của môn Kỹ Năng Mềm -->
           <div class="eval-quote-box">
-            “Bí kíp tốt nhất không phải là khiến ai đó phải thích mình, mà là biết giao tiếp chân thành, lắng nghe và tôn trọng cảm xúc của nhau.”
+            “Kẻ thắng trong tình cảm không phải kẻ lắm mưu nhiều kế, mà là người dùng cả tấm chân tình biến từng lời nói thành đóa hoa xuân.”
           </div>
         </div>
       </div>
 
       <!-- Nút Hành Động Ở Chân Trang -->
       <div class="results-actions">
-        <button id="btn-reread-book" class="btn-result-action btn-primary-action" title="Mở lại Chương 1 để xem lại toàn bộ các lựa chọn đã chọn">
+        <button id="btn-reread-book" class="btn-result-action btn-primary-action">
           <span>📖</span>
           <span>Đọc Lại Bí Kíp</span>
         </button>
-        <button id="btn-replay-all" class="btn-result-action btn-secondary-action" title="Xóa toàn bộ điểm số và lựa chọn, chơi lại từ bìa sách">
+        <button id="btn-replay-all" class="btn-result-action btn-secondary-action">
           <span>🔄</span>
           <span>Chơi Lại Từ Đầu</span>
         </button>

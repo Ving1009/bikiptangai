@@ -1,20 +1,20 @@
 /* ==========================================================================
-   BÍ KÍP TÁN GÁI V2 - Results & Cinematic Sequence Stylesheet
-   Grand Imperial Martial Arts Proclamation Scroll, Radar Chart & Soft-Skills Insights
+   BÍ KÍP TÁN GÁI - Results & Cinematic Sequence Stylesheet
+   Grand Imperial Martial Arts Proclamation Scroll & Radar Chart Display
    ========================================================================== */
 
 /* Cinematic Transition Overlay (Sau khi đọc xong 7 chương) */
 .cinematic-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 5, 3, 0.9);
+  background: rgba(10, 5, 3, 0.88);
   backdrop-filter: blur(10px);
   z-index: 80;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 30px;
   text-align: center;
 }
 
@@ -22,19 +22,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  max-width: 620px;
+  gap: 20px;
+  max-width: 650px;
 }
 
 .cinematic-seal-stamp {
-  width: 95px;
-  height: 95px;
+  width: 110px;
+  height: 110px;
   background: var(--seal-red);
   border: 4px solid var(--seal-red-bright);
   border-radius: 6px;
   color: #fff;
   font-family: var(--font-calligraphy);
-  font-size: 20px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,13 +45,13 @@
 }
 
 @keyframes sealDropSlam {
-  0% { transform: scale(3); opacity: 0; }
+  0% { transform: scale(3.5); opacity: 0; }
   100% { transform: scale(1) rotate(-4deg); opacity: 1; }
 }
 
 .cinematic-text-main {
   font-family: var(--font-title);
-  font-size: clamp(24px, 4vh, 30px);
+  font-size: 32px;
   color: #fff;
   letter-spacing: 2px;
   text-shadow: 0 0 15px rgba(230, 180, 34, 0.4);
@@ -60,21 +60,21 @@
 
 .cinematic-text-sub {
   font-family: var(--font-serif);
-  font-size: clamp(16px, 2.5vh, 19px);
+  font-size: 20px;
   color: var(--gold-bright);
   font-style: italic;
   letter-spacing: 1px;
 }
 
 .btn-start-minigame {
-  margin-top: 10px;
+  margin-top: 15px;
   background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #96281b 100%);
   color: #fff;
   font-family: var(--font-title);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 2px;
-  padding: 12px 32px;
+  padding: 14px 38px;
   border: 2px solid var(--gold-bright);
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -86,7 +86,7 @@
 }
 
 .btn-start-minigame:hover {
-  transform: translateY(-2px) scale(1.03);
+  transform: translateY(-2px) scale(1.04);
   box-shadow: 
     0 8px 30px rgba(231, 76, 60, 0.8),
     0 0 30px rgba(255, 215, 0, 0.9);
@@ -97,51 +97,42 @@
    ========================================== */
 .results-screen {
   position: relative;
-  width: min(940px, 95vw);
-  max-height: min(650px, 90dvh);
-  overflow-y: auto;
+  width: 100%;
+  max-width: 920px;
   background: 
     radial-gradient(ellipse at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 70%),
     linear-gradient(135deg, #24140d 0%, #150905 100%);
-  border: 3.5px solid #8e622b;
+  border: 4px solid #8e622b;
   border-radius: var(--radius-lg);
   box-shadow: 
-    0 25px 55px rgba(0, 0, 0, 0.8),
-    inset 0 0 35px rgba(0, 0, 0, 0.85),
+    0 30px 60px rgba(0, 0, 0, 0.8),
+    inset 0 0 40px rgba(0, 0, 0, 0.85),
     0 0 25px rgba(212, 175, 55, 0.35);
-  padding: clamp(20px, 3vh, 32px) clamp(24px, 3.5vw, 42px);
+  padding: 40px 48px;
   z-index: 50;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-}
-
-.results-screen::-webkit-scrollbar {
-  width: 4px;
-}
-.results-screen::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.4);
-  border-radius: 4px;
+  gap: 26px;
 }
 
 /* Header Kết Quả */
 .results-header {
   text-align: center;
   border-bottom: 2px solid rgba(212, 175, 55, 0.35);
-  padding-bottom: 12px;
+  padding-bottom: 16px;
   position: relative;
 }
 
 .results-super-title {
   font-family: var(--font-title);
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--gold-primary);
-  letter-spacing: 2.5px;
+  letter-spacing: 3px;
   text-transform: uppercase;
 }
 
 .results-title-group {
-  margin-top: 4px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,7 +140,7 @@
 
 .res-title-main {
   font-family: var(--font-calligraphy), var(--font-title);
-  font-size: clamp(32px, 5vh, 40px);
+  font-size: 42px;
   color: #fff2c6;
   text-shadow: 
     0 2px 5px rgba(0, 0, 0, 0.9),
@@ -159,16 +150,16 @@
 
 .res-title-sub {
   font-family: var(--font-serif);
-  font-size: 14.5px;
+  font-size: 16px;
   color: var(--gold-bright);
   font-style: italic;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
-/* Thân Màn Hình Kết Quả */
+/* Thân Màn Hình Kết Quả (Hai Cột: Radar Chart & Nhận Xét) */
 .results-body {
   display: flex;
-  gap: 24px;
+  gap: 32px;
   align-items: center;
 }
 
@@ -178,50 +169,49 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-shrink: 0;
 }
 
 #radar-canvas {
-  width: 290px;
-  height: 290px;
+  width: 320px;
+  height: 320px;
   filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5));
 }
 
 .res-minigame-score {
-  margin-top: 6px;
+  margin-top: 8px;
   background: rgba(212, 175, 55, 0.15);
   border: 1px solid var(--gold-primary);
   color: var(--gold-bright);
   font-family: var(--font-title);
-  font-size: 12.5px;
-  padding: 3px 14px;
+  font-size: 13px;
+  padding: 4px 16px;
   border-radius: var(--radius-full);
 }
 
 /* Cột Nhận Xét & Con Dấu Son */
 .results-eval-col {
-  flex: 1.3;
+  flex: 1.2;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   background: rgba(247, 241, 225, 0.06);
   border: 1px solid rgba(212, 175, 55, 0.3);
-  padding: 18px 20px;
+  padding: 24px;
   border-radius: var(--radius-md);
   position: relative;
 }
 
 .res-seal-stamp {
   position: absolute;
-  top: 14px;
-  right: 16px;
-  width: 58px;
-  height: 58px;
+  top: 18px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
   border: 2px solid var(--seal-red-bright);
-  background: rgba(192, 57, 43, 0.88);
+  background: rgba(192, 57, 43, 0.85);
   color: #fff;
   font-family: var(--font-calligraphy);
-  font-size: 15px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -232,7 +222,7 @@
 
 .eval-heading {
   font-family: var(--font-title);
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--gold-primary);
   letter-spacing: 1px;
   display: flex;
@@ -242,86 +232,38 @@
 
 .res-title-desc {
   font-family: var(--font-serif);
-  font-size: 13.5px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
   color: #f7f1e1;
   text-align: justify;
-  padding-right: 60px;
-}
-
-/* 3 Thẻ phân tích kỹ năng mềm có giá trị giáo dục */
-.results-insights-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 2px;
-}
-
-.insight-card {
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 12.5px;
-  line-height: 1.4;
-}
-
-.insight-strength {
-  background: rgba(46, 204, 113, 0.12);
-  border-left: 3px solid #2ecc71;
-  color: #d4eedd;
-}
-
-.insight-growth {
-  background: rgba(243, 156, 18, 0.12);
-  border-left: 3px solid #f39c12;
-  color: #fdebd0;
-}
-
-.insight-highlight {
-  background: rgba(52, 152, 219, 0.12);
-  border-left: 3px solid #3498db;
-  color: #d4e6f1;
-}
-
-.insight-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
-}
-
-.insight-content {
-  font-style: italic;
 }
 
 .eval-quote-box {
   background: rgba(212, 175, 55, 0.1);
   border-left: 3px solid var(--gold-primary);
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-size: 12.5px;
+  font-size: 13px;
   font-style: italic;
-  color: #e8d7b5;
-  line-height: 1.45;
+  color: #d9cbaf;
 }
 
 /* Nút Hành Động Ở Chân Trang */
 .results-actions {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin-top: 4px;
+  gap: 20px;
+  margin-top: 10px;
 }
 
 .btn-result-action {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 24px;
+  gap: 10px;
+  padding: 12px 28px;
   border-radius: var(--radius-full);
   font-family: var(--font-title);
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -357,7 +299,11 @@
   .results-body {
     flex-direction: column;
   }
-  .res-title-desc {
-    padding-right: 0;
+  .results-screen {
+    padding: 24px 20px;
+    margin: 10px;
+  }
+  .res-title-main {
+    font-size: 32px;
   }
 }

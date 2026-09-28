@@ -835,7 +835,9 @@ class App {
     if (this.nextPageBtn) {
       this.nextPageBtn.classList.remove("hidden");
       this.nextPageBtn.classList.add("pulse-glow");
-      this.nextPageBtn.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (typeof this.nextPageBtn.scrollIntoView === "function") {
+        this.nextPageBtn.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
     }
   }
 

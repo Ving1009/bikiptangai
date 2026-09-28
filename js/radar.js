@@ -171,8 +171,8 @@ class MartialRadarChart {
       const lx = cx + Math.cos(angle) * labelDist;
       const ly = cy + Math.sin(angle) * labelDist;
 
-      this.ctx.font = "bold 13px 'Plus Jakarta Sans', serif";
-      this.ctx.fillStyle = "#fce8a6";
+      this.ctx.font = "bold 13px 'Cinzel Decorative', 'Cinzel', serif, 'Times New Roman'";
+      this.ctx.fillStyle = "#f4ecd8";
       this.ctx.textAlign = "center";
       this.ctx.textBaseline = "middle";
       this.ctx.shadowBlur = 6;
