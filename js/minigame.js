@@ -1,6 +1,9 @@
 /**
- * BÍ KÍP TÁN GÁI - Mini-game "Phản Xạ Tán Gái" (Speed Dating Reflex)
- * 5 câu hỏi tình huống dồn dập, đồng hồ đếm ngược 10 giây kịch tính
+ * BÍ KÍP TÁN GÁI V2 - Mini-game "Phản Xạ Tán Gái" (Speed Dating Reflex)
+ * - Sửa lỗi tính điểm (choice.score luôn được cộng đầy đủ)
+ * - Timer tính theo timeLimit thực tế của từng câu
+ * - Phân loại 4 cấp độ phản hồi (excellent / good / neutral / poor)
+ * - Đếm ngược 3..2..1 kịch tính nhẹ, feedback kỹ năng mềm rõ ràng
  */
 
 class MiniGame {
@@ -10,6 +13,7 @@ class MiniGame {
     this.totalScore = 0;
     this.timer = null;
     this.timeLeft = 10;
+    this.currentTimeLimit = 10;
     this.isAnswering = false;
     this.onComplete = options.onComplete || (() => {});
     
@@ -23,6 +27,14 @@ class MiniGame {
     this.girlReactionEl = document.getElementById("minigame-girl-reaction");
     this.feedbackTextEl = document.getElementById("minigame-feedback-text");
     this.scoreBadgeEl = document.getElementById("minigame-score-badge");
+  }
+
+  // Tính maxScore linh hoạt theo data thực tế
+  getMaxScore() {
+    return this.questions.reduce((sum, q) => {
+      const best = Math.max(...q.choices.map(c => c.score || 0));
+      return sum + best;
+    }, 0);
   }
 
   start() {
@@ -42,7 +54,8 @@ class MiniGame {
     this.currentIndex = index;
     const q = this.questions[index];
     this.isAnswering = true;
-    this.timeLeft = q.timeLimit || 10;
+    this.currentTimeLimit = q.timeLimit || 10;
+    this.timeLeft = this.currentTimeLimit;
 
     // Cập nhật UI
     if (this.questionIndexEl) {
@@ -55,7 +68,7 @@ class MiniGame {
       this.reactionBanner.classList.add("hidden");
     }
 
-    // Render 4 lựa chọn
+    // Render 4 lựa chọn phản xạ
     if (this.choicesContainer) {
       this.choicesContainer.innerHTML = "";
       const letters = ["A", "B", "C", "D"];
@@ -71,7 +84,6 @@ class MiniGame {
       });
     }
 
-    // Khởi động đồng hồ đếm ngược 10 giây
     this.startTimer();
   }
 
@@ -83,7 +95,7 @@ class MiniGame {
       this.timeLeft--;
       this.updateTimerDisplay();
 
-      // Âm thanh tích tắc
+      // Âm thanh tích tắc cảnh báo
       if (window.soundEngine) {
         window.soundEngine.playTick(this.timeLeft <= 3);
       }
@@ -100,12 +112,14 @@ class MiniGame {
       this.timerText.textContent = `${this.timeLeft}s`;
     }
     if (this.timerBar) {
-      const percentage = (this.timeLeft / 10) * 100;
+      const percentage = Math.max(0, (this.timeLeft / this.currentTimeLimit) * 100);
       this.timerBar.style.width = `${percentage}%`;
       if (this.timeLeft <= 3) {
         this.timerBar.classList.add("urgent");
+        if (this.timerText) this.timerText.classList.add("pulse-urgent");
       } else {
         this.timerBar.classList.remove("urgent");
+        if (this.timerText) this.timerText.classList.remove("pulse-urgent");
       }
     }
   }
@@ -124,23 +138,33 @@ class MiniGame {
     allBtns.forEach((b) => b.classList.add("disabled"));
     buttonEl.classList.add("selected");
 
-    const isGood = choice.score >= 2;
-    if (isGood) {
-      buttonEl.classList.add("good");
-      this.totalScore += choice.score;
+    // SỬA LỖI ĐIỂM: Luôn cộng điểm của lựa chọn (kể cả 1, 2 hay 3)
+    this.totalScore += (choice.score || 0);
+
+    // Phân loại visual feedback: 3=excellent, 2=good, 1=neutral, 0=poor
+    let tierClass = "tier-neutral";
+    if (choice.score >= 3) {
+      tierClass = "tier-excellent";
       if (window.soundEngine) setTimeout(() => window.soundEngine.playSuccess(), 120);
+    } else if (choice.score === 2) {
+      tierClass = "tier-good";
+      if (window.soundEngine) setTimeout(() => window.soundEngine.playSuccess(), 120);
+    } else if (choice.score === 1) {
+      tierClass = "tier-neutral";
     } else {
-      buttonEl.classList.add("bad");
+      tierClass = "tier-poor";
     }
+
+    buttonEl.classList.add(tierClass);
 
     if (this.scoreBadgeEl) {
       this.scoreBadgeEl.textContent = `Điểm: ${this.totalScore}`;
     }
 
-    // Hiển thị phản ứng tức thì của nàng
-    this.showReaction(choice.reaction, choice.feedback, isGood);
+    // Hiển thị phản ứng tức thì & Kỹ năng liên quan
+    this.showReaction(choice.reaction, choice.feedback, choice.skill, tierClass);
 
-    // Chuyển câu tiếp theo sau 2.2 giây
+    // Chuyển sang câu tiếp theo
     setTimeout(() => {
       this.loadQuestion(this.currentIndex + 1);
     }, 2400);
@@ -153,30 +177,36 @@ class MiniGame {
     const allBtns = this.choicesContainer.querySelectorAll(".mg-choice-btn");
     allBtns.forEach((b) => b.classList.add("disabled"));
 
-    this.showReaction("⏳", "Hết giờ! Do dự là tự sát trong tình trường! (0 điểm)", false);
+    this.showReaction(
+      "⏳",
+      "Hết giờ! Đại hiệp suy nghĩ lâu quá, cơ hội đã trôi theo gió... (+0 điểm)",
+      "Do dự quá lâu",
+      "tier-poor"
+    );
 
     setTimeout(() => {
       this.loadQuestion(this.currentIndex + 1);
     }, 2400);
   }
 
-  showReaction(emoji, feedback, isGood) {
+  showReaction(emoji, feedback, skill, tierClass) {
     if (!this.reactionBanner) return;
     this.reactionBanner.classList.remove("hidden");
-    this.reactionBanner.className = `minigame-reaction-banner ${isGood ? "reaction-good" : "reaction-bad"}`;
+    this.reactionBanner.className = `minigame-reaction-banner ${tierClass}`;
 
     if (this.girlReactionEl) {
       this.girlReactionEl.textContent = emoji;
     }
     if (this.feedbackTextEl) {
-      this.feedbackTextEl.textContent = feedback;
+      const skillTag = skill ? `<span class="mg-skill-tag">💡 ${skill}</span>` : "";
+      this.feedbackTextEl.innerHTML = `<div>${feedback}</div>${skillTag}`;
     }
   }
 
   finish() {
     clearInterval(this.timer);
     if (this.onComplete) {
-      this.onComplete(this.totalScore, this.questions.length * 3);
+      this.onComplete(this.totalScore, this.getMaxScore());
     }
   }
 }

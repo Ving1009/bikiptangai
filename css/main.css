@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BÍ KÍP TÁN GÁI - Main Stylesheet
+   BÍ KÍP TÁN GÁI V2 - Main Stylesheet
    Ancient Chinese Martial Arts & Modern Aesthetic Design System
    ========================================================================== */
 
@@ -74,11 +74,18 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Accessibility: Focus-visible */
+:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
 /* Background Scene: Bàn gỗ cổ, ánh sáng nến và đèn lồng */
 .scene-viewport {
   position: relative;
   width: 100vw;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,6 +96,7 @@ html, body {
     radial-gradient(circle at 85% 15%, rgba(220, 80, 20, 0.12) 0%, transparent 40%),
     linear-gradient(180deg, #130b07 0%, #1e120b 45%, #0f0704 100%);
   overflow: hidden;
+  padding: 20px 10px;
 }
 
 /* Wood texture subtle grain overlay */
@@ -171,9 +179,9 @@ html, body {
 /* Top Navigation & Controls */
 .top-nav {
   position: fixed;
-  top: 18px;
-  left: 24px;
-  right: 24px;
+  top: 14px;
+  left: 20px;
+  right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -188,10 +196,10 @@ html, body {
 .brand-badge {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(28, 18, 12, 0.85);
+  gap: 10px;
+  background: rgba(28, 18, 12, 0.88);
   border: 1px solid rgba(212, 175, 55, 0.35);
-  padding: 6px 16px;
+  padding: 6px 14px;
   border-radius: var(--radius-full);
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -201,39 +209,50 @@ html, body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   background: var(--seal-red);
   color: #fff;
   font-family: var(--font-calligraphy);
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 4px;
   box-shadow: 0 0 8px var(--seal-glow);
 }
 
 .brand-title-text {
   font-family: var(--font-title);
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--gold-primary);
   letter-spacing: 1px;
+}
+
+.brand-version-tag {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--gold-bright);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .nav-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(28, 18, 12, 0.85);
+  gap: 7px;
+  background: rgba(28, 18, 12, 0.88);
   border: 1px solid rgba(212, 175, 55, 0.3);
   color: #f7f1e1;
-  padding: 8px 16px;
+  padding: 7px 14px;
   border-radius: var(--radius-full);
-  font-size: 13px;
+  font-size: 12.5px;
   font-family: var(--font-body);
   font-weight: 500;
   cursor: pointer;
@@ -249,13 +268,23 @@ html, body {
   box-shadow: 0 4px 12px rgba(230, 180, 34, 0.25);
 }
 
+/* Presentation Mode (Trình chiếu) */
+body.in-presentation-mode .top-nav {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+body.in-presentation-mode .top-nav:hover {
+  opacity: 1;
+}
+
 /* Utility Animations */
 .fade-in {
-  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .fade-out {
-  animation: fadeOut 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hidden {
