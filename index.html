@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BÍ KÍP TÁN GÁI - Tuyệt Kỹ Tình Trường Cổ Phong</title>
+  <meta name="description" content="Trải nghiệm đọc bí kíp 3D tương tác kết hợp chat hiện đại và phong cách cổ trang Trung Hoa.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23c0392b%22/><text y=%2265%22 x=%2250%22 text-anchor=%22middle%22 font-size=%2252%22 fill=%22%23ffd700%22 font-family=%22serif%22 font-weight=%22bold%22>BÍ</text></svg>">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/book3d.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="stylesheet" href="css/minigame.css">
+  <link rel="stylesheet" href="css/results.css">
+</head>
+<body>
+
+  <!-- Top Navigation & Controls Bar -->
+  <header class="top-nav" role="banner">
+    <div class="brand-badge">
+      <span class="brand-seal-icon">秘</span>
+      <span class="brand-title-text">BÍ KÍP TÁN GÁI</span>
+    </div>
+
+    <div class="nav-actions">
+      <button id="sound-toggle-btn" class="nav-btn" aria-label="Bật hoặc tắt âm thanh">
+        <span class="sound-icon">🔊</span>
+        <span class="btn-text">Âm thanh: Bật</span>
+      </button>
+      <button id="reset-btn" class="nav-btn" aria-label="Đọc lại từ đầu">
+        <span class="reset-icon">🔄</span>
+        <span class="btn-text">Đọc lại</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main 3D Scene Viewport -->
+  <main class="scene-viewport" role="main">
+    
+    <!-- Floating particles & ambient dust canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Hanging Lanterns at Corners -->
+    <div class="lantern lantern-left" aria-hidden="true">
+      <div class="lantern-cord"></div>
+      <div class="lantern-body"></div>
+      <div class="lantern-tassel"></div>
+    </div>
+    <div class="lantern lantern-right" aria-hidden="true">
+      <div class="lantern-cord"></div>
+      <div class="lantern-body"></div>
+      <div class="lantern-tassel"></div>
+    </div>
+
+    <!-- ========================================================
+         1. KHÔNG GIAN QUYỂN SÁCH 3D CỔ (THE 3D BOOK VIEWPORT)
+         ======================================================== -->
+    <div id="book-container" class="book-viewport">
+      <div id="book-3d" class="book-3d book-state-closed">
+
+        <!-- Bìa Lưng Sách Dưới Cùng (Bottom Back Cover) -->
+        <div class="book-cover-back" aria-hidden="true"></div>
+
+        <!-- Gáy Sách & Độ Dày Mép Giấy (Spine & Paper Thickness) -->
+        <div class="book-spine" aria-hidden="true">
+          <div class="spine-stitch stitch-1"></div>
+          <div class="spine-stitch stitch-2"></div>
+          <div class="spine-stitch stitch-3"></div>
+          <div class="spine-stitch stitch-4"></div>
+          <div class="spine-stitch stitch-5"></div>
+        </div>
+        <div class="book-page-edges" aria-hidden="true"></div>
+
+        <!-- Dây Lụa Đánh Dấu Sách (Silk Bookmark) -->
+        <div class="silk-bookmark" aria-hidden="true">
+          <span class="bookmark-gold-tag">BÍ KÍP</span>
+        </div>
+
+        <!-- BÌA SÁCH TRƯỚC (FRONT COVER - LẬT MỞ ĐƯỢC) -->
+        <div id="book-cover-front" class="book-cover-front">
+          <!-- Mặt ngoài bìa sách (Outside Front) -->
+          <div class="cover-face cover-front-face">
+            <div class="cover-corner corner-tl"></div>
+            <div class="cover-corner corner-tr"></div>
+            <div class="cover-corner corner-bl"></div>
+            <div class="cover-corner corner-br"></div>
+
+            <div class="cover-header-crest">
+              <span class="cloud-flourish">☁</span>
+              <span>VÕ LÂM TÌNH TRƯỜNG</span>
+              <span class="cloud-flourish">☁</span>
+            </div>
+
+            <div class="cover-title-group">
+              <div class="cover-sub-seal">NGUYỆT LÃO THẦN THƯ</div>
+              <h1 class="cover-main-title">BÍ KÍP<br>TÁN GÁI</h1>
+              <p class="cover-desc-text">“Chân thành vi bản, tinh tế vi tâm, dĩ nhu khắc cương, bách chiến bách thắng.”</p>
+            </div>
+
+            <div class="cover-red-stamp">
+              <span class="stamp-inner-text">TUYỆT<br>KỸ</span>
+            </div>
+
+            <button id="btn-open-book" class="btn-open-book">
+              ✨ MỞ BÍ KÍP ✨
+            </button>
+          </div>
+
+          <!-- Mặt trong bìa sách (Inside Front) -->
+          <div class="cover-face cover-back-face">
+            <div class="page-inner-border"></div>
+          </div>
+        </div>
+
+        <!-- HAI TRANG SÁCH MỞ KHI ĐỌC (SPREAD: LEFT | RIGHT) -->
+        <div id="reading-ui" class="book-spread-open">
+          
+          <!-- TRANG TRÁI: BỐI CẢNH & LỜI BÌNH TIỀN NHÂN -->
+          <article class="book-page book-page-left">
+            <div class="page-inner-border"></div>
+            
+            <div class="left-page-content">
+              <!-- Tiêu đề chương -->
+              <div class="chapter-header-box">
+                <div class="chapter-badge-wrap">
+                  <div class="chapter-badge-group">
+                    <span id="chapter-badge" class="chapter-badge">Chương 1</span>
+                    <button id="btn-prev-page" class="btn-prev-chapter hidden" title="Lật lại chương trước">❮ Quay lại</button>
+                  </div>
+                  <span id="bookmark-progress" class="chapter-progress-mark">Chương 1 / 7</span>
+                </div>
+                <h2 id="chapter-title" class="chapter-title">Kỳ Ngộ Tại Tàng Kinh Các</h2>
+                <div class="chapter-setting-row">
+                  <span class="setting-icon">📍</span>
+                  <span id="chapter-setting">Quán Cafe Sách Yên Tĩnh</span>
+                </div>
+              </div>
+
+              <!-- Nội dung tình huống -->
+              <div class="chapter-body-box">
+                <div class="context-label">
+                  <span>📜</span>
+                  <span>Bối Cảnh Tình Huống</span>
+                </div>
+                <p id="chapter-context" class="chapter-context">
+                  Bạn và Thanh Thảo tình cờ ngồi đối diện nhau tại quán cafe sách. Thảo đang loay hoay tìm ổ cắm sạc laptop bị kẹt sâu dưới gầm bàn...
+                </p>
+
+                <!-- Lời khuyên cổ thư -->
+                <div class="chapter-wisdom-box">
+                  <div class="wisdom-title">
+                    <span>💡</span>
+                    <span>Bí Kíp Tiền Nhân Dạy:</span>
+                  </div>
+                  <p id="chapter-wisdom" class="chapter-wisdom">
+                    “Hành động mở đầu như giọt nước rơi vào mặt hồ, phải tự nhiên, điềm đạm, không được làm dậy sóng cuồng phong.”
+                  </p>
+                </div>
+              </div>
+
+              <!-- Chân trang trái -->
+              <div class="left-page-footer">
+                <span>Trang Trái: Tâm Pháp</span>
+                <span>Bí Kíp Tán Gái • Cổ Thư</span>
+              </div>
+            </div>
+            <div id="page-corner-peel-left" class="page-corner-peel-left hidden" title="Bấm vào góc để lật lại trang trước"></div>
+          </article>
+
+          <!-- TRANG PHẢI: KHUNG CHAT MESSENGER & 4 LỰA CHỌN -->
+          <article class="book-page book-page-right">
+            <div class="page-inner-border"></div>
+            <div id="page-corner-peel" class="page-corner-peel" title="Bấm vào góc để lật sang trang sau"></div>
+
+            <div class="right-page-content">
+              <!-- Khung Chat phong cách Messenger Cổ Phong -->
+              <div class="chat-container">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                  <div class="chat-header-profile">
+                    <div class="chat-header-avatar">
+                      <span>TT</span>
+                      <div class="chat-online-dot"></div>
+                    </div>
+                    <div class="chat-header-info">
+                      <span class="chat-header-name">Thanh Thảo</span>
+                      <span class="chat-header-status">Đang hoạt động</span>
+                    </div>
+                  </div>
+                  <span class="chat-scroll-badge">Truyền Tin</span>
+                </div>
+
+                <!-- Chat Messages Stream -->
+                <div id="chat-messages" class="chat-messages" role="log" aria-live="polite">
+                  <!-- Tin nhắn sẽ được JavaScript đưa vào tuần tự -->
+                </div>
+
+                <!-- 4 Lựa chọn trả lời -->
+                <div class="choices-wrapper">
+                  <div class="choices-heading">
+                    <span>Chọn Cách Ứng Đối:</span>
+                    <span id="reselect-hint" class="choice-reselect-hint">💡 Có thể bấm lựa chọn khác bất kỳ lúc nào để thử phản ứng của nàng</span>
+                  </div>
+                  <div id="scenario-choices" class="choices-grid">
+                    <!-- 4 Card lựa chọn render từ scenarios.js -->
+                  </div>
+
+                  <!-- Nhận xét cổ thư sau khi chọn -->
+                  <div id="ancient-comment-box" class="ancient-comment-box hidden"></div>
+
+                  <!-- Nút lật sang trang tiếp theo -->
+                  <button id="btn-next-page" class="btn-next-page hidden">
+                    <span>Lật Sang Trang Tiếp Theo</span>
+                    <span class="btn-arrow-icon">➔</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- BÓNG ĐỔ ĐỘNG KHI LẬT TRANG -->
+          <div id="page-turn-shadow-left" class="page-turn-shadow-left" aria-hidden="true"></div>
+          <div id="page-turn-shadow-right" class="page-turn-shadow-right" aria-hidden="true"></div>
+
+          <!-- LÁ TRANG 3D XOAY LẬT KHI CHUYỂN CHƯƠNG (PAGE FLIPPER) -->
+          <div id="book-page-flipper" class="book-page-flipper hidden" aria-hidden="true">
+            <div class="flipper-face flipper-front">
+              <div class="flipper-border"></div>
+              <div id="flipper-front-content" class="flipper-content-preview"></div>
+              <div class="flipper-shine"></div>
+            </div>
+            <div class="flipper-face flipper-back">
+              <div class="flipper-border"></div>
+              <div class="flipper-back-content">
+                <div class="flipper-seal-stamp">秘笈</div>
+                <div class="flipper-calligraphy-col">情場如戰場 • 誠心動乾坤</div>
+                <div class="flipper-calligraphy-col">欲速則不達 • 靜水流深長</div>
+              </div>
+              <div class="flipper-shine"></div>
+            </div>
+            <div class="flipper-crease-shadow"></div>
+          </div>
+
+        </div> <!-- /reading-ui -->
+
+      </div> <!-- /book-3d -->
+    </div> <!-- /book-container -->
+
+    <!-- ========================================================
+         2. CHUỖI ĐÓNG SÁCH & THÔNG ĐIỆP DẪN NHẬP (CINEMATIC)
+         ======================================================== -->
+    <div id="cinematic-overlay" class="cinematic-overlay hidden" role="dialog" aria-modal="true">
+      <div class="cinematic-content">
+        <div class="cinematic-seal-stamp">
+          <span>ĐÃ LĨNH<br>HỘI</span>
+        </div>
+        <h2 class="cinematic-text-main">“NGƯƠI ĐÃ ĐỌC XONG BÍ KÍP...”</h2>
+        <p class="cinematic-text-sub">“NHƯNG LÝ THUYẾT THÔI CHƯA ĐỦ. THỰC CHIẾN MỚI THỬ LỬA ANH HÙNG!”</p>
+        <button id="btn-start-minigame" class="btn-start-minigame">
+          ⚔️ BƯỚC VÀO THỬ THÁCH CUỐI CÙNG ⚔️
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         3. MINI GAME: PHẢN XẠ TÁN GÁI (SPEED DATING REFLEX)
+         ======================================================== -->
+    <section id="minigame-screen" class="minigame-screen hidden" aria-label="Mini-game Phản Xạ Tán Gái">
+      <div class="mg-corner mg-tl"></div>
+      <div class="mg-corner mg-tr"></div>
+      <div class="mg-corner mg-bl"></div>
+      <div class="mg-corner mg-br"></div>
+
+      <!-- Header Mini Game -->
+      <div class="mg-header">
+        <div class="mg-title-group">
+          <span class="mg-seal-icon">速</span>
+          <div>
+            <h2 class="mg-title-text">PHẢN XẠ TÁN GÁI</h2>
+            <span id="minigame-q-index" class="mg-q-index">Thử Thách 1 / 5</span>
+          </div>
+        </div>
+        <div id="minigame-score-badge" class="mg-score-badge">Điểm: 0</div>
+      </div>
+
+      <!-- Thanh Đếm Ngược 10 Giây -->
+      <div class="mg-timer-section">
+        <div class="mg-timer-label-row">
+          <span>Thời gian suy nghĩ:</span>
+          <span id="minigame-timer-text" class="mg-timer-text">10s</span>
+        </div>
+        <div class="mg-timer-track">
+          <div id="minigame-timer-bar" class="mg-timer-bar"></div>
+        </div>
+      </div>
+
+      <!-- Tình huống của nàng -->
+      <div class="mg-prompt-card">
+        <div class="mg-girl-avatar-big">Thảo</div>
+        <p id="minigame-prompt" class="mg-prompt-text">
+          “Anh ơi... hôm nay bạn thân em bảo nhìn anh trông có nét hơi lăng nhăng đấy :(”
+        </p>
+      </div>
+
+      <!-- 4 Lựa chọn phản xạ nhanh -->
+      <div id="minigame-choices" class="mg-choices-grid">
+        <!-- Render bằng minigame.js -->
+      </div>
+
+      <!-- Banner Phản Ứng Tức Thì Của Nàng -->
+      <div id="minigame-reaction-banner" class="minigame-reaction-banner hidden">
+        <span id="minigame-girl-reaction" class="mg-reaction-emoji">🥰</span>
+        <span id="minigame-feedback-text" class="mg-feedback-text">Dí dỏm lật ngược thế cờ! Nàng bật cười thẹn thùng!</span>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         4. MÀN HÌNH KẾT QUẢ VINH DANH (RESULTS SCREEN)
+         ======================================================== -->
+    <section id="results-screen" class="results-screen hidden" aria-label="Màn hình kết quả">
+      <div class="mg-corner mg-tl"></div>
+      <div class="mg-corner mg-tr"></div>
+      <div class="mg-corner mg-bl"></div>
+      <div class="mg-corner mg-br"></div>
+
+      <!-- Results Header -->
+      <div class="results-header">
+        <span class="results-super-title">BẢNG VÀNG CÔNG ĐỨC • VÕ LÂM TÌNH TRƯỜNG</span>
+        <div class="results-title-group">
+          <h2 id="res-title-main" class="res-title-main">BẬC THẦY TÁN GÁI</h2>
+          <span id="res-title-sub" class="res-title-sub">Cửu Dương Chân Kinh Đại Thành</span>
+        </div>
+      </div>
+
+      <!-- Results Body: Biểu Đồ Radar & Nhận Xét -->
+      <div class="results-body">
+        <!-- Cột Biểu Đồ Ngũ Giác -->
+        <div class="results-chart-col">
+          <canvas id="radar-canvas" width="320" height="320"></canvas>
+          <span id="res-minigame-score" class="res-minigame-score">Điểm Phản Xạ: 15 / 15</span>
+        </div>
+
+        <!-- Cột Nhận Xét & Con Dấu Son -->
+        <div class="results-eval-col">
+          <div id="res-seal-stamp" class="res-seal-stamp">THẦN QUÂN</div>
+          
+          <div class="eval-heading">
+            <span>📜</span>
+            <span>Nguyệt Lão Thần Thư Nhận Xét:</span>
+          </div>
+
+          <p id="res-title-desc" class="res-title-desc">
+            Ngươi đã lãnh hội tuyệt đỉnh tâm pháp tình trường! Vừa biết lắng nghe, điềm đạm, lại sở hữu khiếu hài hước duyên dáng và sự tôn trọng mực thước.
+          </p>
+
+          <div class="eval-quote-box">
+            “Kẻ thắng trong tình cảm không phải kẻ lắm mưu nhiều kế, mà là người dùng cả tấm chân tình biến từng lời nói thành đóa hoa xuân.”
+          </div>
+        </div>
+      </div>
+
+      <!-- Nút Hành Động Ở Chân Trang -->
+      <div class="results-actions">
+        <button id="btn-reread-book" class="btn-result-action btn-primary-action">
+          <span>📖</span>
+          <span>Đọc Lại Bí Kíp</span>
+        </button>
+        <button id="btn-replay-all" class="btn-result-action btn-secondary-action">
+          <span>🔄</span>
+          <span>Chơi Lại Từ Đầu</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JavaScript Modules -->
+  <script src="js/scenarios.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/radar.js"></script>
+  <script src="js/minigame.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
