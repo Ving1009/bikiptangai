@@ -556,6 +556,7 @@ class App {
       if (this.chapterAnalysisBox) this.chapterAnalysisBox.classList.add("hidden");
       if (this.ancientCommentBox) this.ancientCommentBox.classList.add("hidden");
       if (this.nextPageBtn) this.nextPageBtn.classList.add("hidden");
+      if (this.reselectHint) this.reselectHint.classList.add("hidden");
       this.renderChatSequence(scenario);
     }
 
@@ -617,10 +618,10 @@ class App {
 
     this.appendMessage("player", choice.playerMessage, "Đã gửi", "branch-msg-player");
 
-    // Lấy phản hồi phù hợp (Chương 7 có branching dựa trên toàn bộ hành trình)
+    // Lấy phản hồi phù hợp (Chương 7 có branching dựa trên lựa chọn và toàn bộ hành trình)
     let replyText = choice.girlReply;
     if (scenario.id === 7 && typeof window.getChapter7BranchingResponse === "function") {
-      const branchRes = window.getChapter7BranchingResponse(this.stats, this.choicesHistory);
+      const branchRes = window.getChapter7BranchingResponse(choice, this.stats, this.choicesHistory);
       replyText = branchRes.reply;
     }
 
@@ -720,7 +721,7 @@ class App {
       const card = document.createElement("button");
       card.className = "choice-card choice-enter";
       card.id = `choice-card-${choice.id}`;
-      card.setAttribute("aria-label", `Lựa chọn ${letters[index]}: ${choice.tag}`);
+      card.setAttribute("aria-label", `Lựa chọn ${letters[index]}`);
 
       // Nếu đã từng chọn thẻ này
       if (this.currentChapterChoice && this.currentChapterChoice.id === choice.id) {
@@ -730,10 +731,10 @@ class App {
         card.title = "Bấm để thử cách phản ứng này!";
       }
 
+      // Không hiển thị choice-tag để người chơi tự phân vân và suy ngẫm
       card.innerHTML = `
         <div class="choice-letter-seal">${letters[index]}</div>
         <div class="choice-body">
-          <div class="choice-tag">${choice.tag}</div>
           <div class="choice-text">${choice.text}</div>
         </div>
       `;
@@ -804,11 +805,11 @@ class App {
     this.setSafeTimeout(() => {
       this.removeTypingIndicator();
 
-      // Branching logic đặc biệt ở Chương 7
+      // Branching logic đặc biệt ở Chương 7: phụ thuộc lựa chọn và toàn bộ hành trình
       let replyText = choice.girlReply;
       let commentText = choice.ancientComment;
       if (scenario.id === 7 && typeof window.getChapter7BranchingResponse === "function") {
-        const branchRes = window.getChapter7BranchingResponse(this.stats, this.choicesHistory);
+        const branchRes = window.getChapter7BranchingResponse(choice, this.stats, this.choicesHistory);
         replyText = branchRes.reply;
         commentText = branchRes.ancientComment;
       }
@@ -847,6 +848,15 @@ class App {
           ${overrideComment || choice.ancientComment}
         </div>
       `;
+      // Scroll trang trái để lời bình hiển thị nếu cần
+      if (typeof this.ancientCommentBox.scrollIntoView === "function") {
+        this.ancientCommentBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+
+    // Hiện gợi ý "bấm lại" sau khi đã chọn
+    if (this.reselectHint) {
+      this.reselectHint.classList.remove("hidden");
     }
 
     if (this.nextPageBtn) {

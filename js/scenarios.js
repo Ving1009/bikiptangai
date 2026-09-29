@@ -1,6 +1,10 @@
 /**
- * BÍ KÍP TÁN GÁI V2 - Dữ Liệu 7 Tình Huống Kể Chuyện Tương Tác
- * Thiết kế cho môn Kỹ Năng Mềm: Giao tiếp chân thành, lắng nghe thấu cảm, tôn trọng ranh giới
+ * BÍ KÍP TÁN GÁI - 7 Tình Huống Kể Chuyện Tương Tác Liên Hoàn
+ * Nhân vật: BẠN & THANH THẢO
+ * Hành trình: Gặp gỡ tại thư viện -> Tin nhắn đầu tiên -> Vượt qua thử thách ->
+ *            Gặp lại sau thi -> Buổi hẹn đầu tiên -> Làm điểm tựa thấu cảm -> Lời tỏ tình ven hồ.
+ * Logic: Nếu đi đúng hướng (tôn trọng, thấu cảm, chân thành) -> Hai người đến với nhau.
+ *        Nếu đi sai hướng (áp đặt, kể công, né tránh, thiếu tôn trọng) -> Thất bại.
  */
 
 window.SCENARIOS_DATA = [
@@ -8,33 +12,33 @@ window.SCENARIOS_DATA = [
     id: 1,
     chapter: "Chương 1",
     chapterTitle: "Kỳ Ngộ Tại Tàng Kinh Các",
-    badge: "Khởi Đầu Giao Tiếp",
-    setting: "Quán Cafe Sách Yên Tĩnh - Chiều Thứ Bảy",
-    context: "Bạn và Thanh Thảo tình cờ ngồi đối diện nhau tại bàn dài trong quán cafe sách. Thảo đang loay hoay tìm ổ cắm sạc laptop bị kẹt sâu dưới gầm bàn gỗ, trán lấm tấm mồ hôi, thỉnh thoảng khẽ liếc sang bạn như muốn nhờ giúp nhưng còn e ngại.",
-    ancientWisdom: "Lời dẫn cổ thư: 'Vạn sự khởi đầu nan. Cuộc gặp gỡ đầu tiên như giọt nước rơi vào mặt hồ phẳng lặng, cần sự tự nhiên, chừng mực và quan sát tinh tế.'",
-    girlStatus: "Mới quen",
+    badge: "Lần Đầu Gặp Gỡ",
+    setting: "Thư Viện Trường Đại Học — Chiều Thứ Sáu Yên Tĩnh",
+    context: "Bạn và Thanh Thảo tình cờ ngồi đối diện nhau tại bàn dài trong thư viện. Thảo đang loay hoay với chiếc tai nghe bluetooth không thể kết nối vào laptop để nghe bài giảng, trán lấm tấm mồ hôi. Thỉnh thoảng cô khẽ ngước nhìn bạn như muốn nhờ giúp nhưng còn e ngại.",
+    ancientWisdom: "Lời dẫn cổ thư: 'Vạn sự khởi đầu nan. Cuộc gặp gỡ đầu tiên tựa giọt nước rơi vào mặt hồ phẳng lặng, cần sự tự nhiên, chừng mực và quan sát tinh tế.'",
+    girlStatus: "Chưa quen",
     initialMessages: [
-      { sender: "girl", text: "Ước gì cái ổ cắm này nó không trốn sâu dưới gầm bàn như thế... T_T", time: "14:15" },
+      { sender: "girl", text: "Ước gì cái tai nghe này nó không dở chứng kết nối lúc đang cần nghe bài thế này... T_T", time: "14:15" },
       { sender: "system", text: "Thanh Thảo khẽ ngước mắt lên nhìn bạn, vẻ mặt vừa ngượng vừa bối rối...", time: "14:15" }
     ],
     choices: [
       {
         id: "A",
         tag: "Chủ động giúp đỡ",
-        text: "Mỉm cười đứng dậy kéo ổ điện ra hộ: 'Ổ này hơi kẹt, để mình kéo ra giúp bạn nhé. Cắm nhẹ tay kẻo gãy giắc sạc nè.'",
-        playerMessage: "Ổ cắm này hơi kẹt để mình kéo ra giúp bạn nhé. Bạn cắm nhẹ tay kẻo gãy giắc đó.",
-        girlReply: "Ui may quá, cảm ơn bạn nhiều nha! Mình loay hoay nãy giờ ngại ghê á. Bạn chu đáo thật đấy! ✨",
+        text: "Bạn thử xóa thiết bị cũ trong danh sách Bluetooth rồi ghép lại từ đầu xem, nhiều khi bị kẹt cache cũ đó. Cần mình hỗ trợ không?",
+        playerMessage: "Bạn thử xóa thiết bị cũ trong Bluetooth rồi ghép lại từ đầu xem, nhiều khi bị kẹt cache kết nối cũ đó. Cần mình hỗ trợ gì không?",
+        girlReply: "Ui may quá được rồi nè! Mình loay hoay nãy giờ ngại ghê á. Cảm ơn bạn nhiều nha, bạn chu đáo thật đấy! ✨",
         girlReactionEmoji: "🥰",
         softSkills: ["Quan sát tinh tế", "Chủ động hỗ trợ đúng lúc"],
-        evaluation: "Hành động xuất phát từ lòng tốt tự nhiên, đúng việc đối phương cần mà không tạo áp lực hay đòi hỏi đền đáp.",
+        evaluation: "Hành động xuất phát từ thiện ý tự nhiên, đúng điều đối phương cần mà không tạo áp lực hay vồ vập.",
         ancientComment: "Biết quan sát điều nhỏ nhặt, ra tay đúng lúc tựa gió xuân ấm áp, đối phương ắt cảm nhận được sự tin cậy.",
         effects: { communication: 2, confidence: 2, empathy: 2, respect: 2, humor: 0, impression: 2 }
       },
       {
         id: "B",
         tag: "Gợi ý gián tiếp",
-        text: "Chỉ tay về phía góc tường: 'Hình như góc bên kia cũng có một ổ cắm trống đó, nếu kẹt quá bạn cắm thử xem sao.'",
-        playerMessage: "À... bạn cần sạc pin hả? Hình như góc tường bên kia cũng có ổ cắm dự phòng đó bạn.",
+        text: "Góc phòng bên kia có bàn cắm tai nghe có dây dự phòng đó bạn, nếu gấp thì qua đó cắm tạm xem sao.",
+        playerMessage: "Góc phòng bên kia có bàn cắm tai nghe có dây dự phòng của thư viện đó bạn, nếu gấp thì qua đó cắm tạm xem sao.",
         girlReply: "Dạ để mình ngó thử xem sao... Cảm ơn bạn đã chỉ nhé! 🙂",
         girlReactionEmoji: "🙂",
         softSkills: ["Lịch sự", "Giữ khoảng cách an toàn"],
@@ -44,10 +48,10 @@ window.SCENARIOS_DATA = [
       },
       {
         id: "C",
-        tag: "Cung cấp giải pháp ngay",
-        text: "Lấy củ sạc nhanh của mình ra đặt lên bàn: 'Dùng củ sạc 100W này của mình đi bạn, hàng xịn cắm 15 phút là đầy pin liền!'",
-        playerMessage: "Dùng củ sạc 100W này của mình đi bạn ơi! Cắm 15 phút là đầy pin dùng thoải mái luôn.",
-        girlReply: "Dạ thôi phiền bạn quá, mình cắm tạm được rồi, cảm ơn bạn nhé... (quay đi tiếp tục làm việc)",
+        tag: "Khoe mẽ giải pháp",
+        text: "Dùng tạm tai nghe chống ồn xịn này của mình đi, hàng cao cấp nghe bao êm khỏi lo lỗi kết nối linh tinh!",
+        playerMessage: "Dùng tạm tai nghe chống ồn xịn này của mình đi bạn ơi! Hàng cao cấp nghe êm ru khỏi lo lỗi kết nối linh tinh.",
+        girlReply: "Dạ thôi phiền bạn quá, mình cắm dây tạm được rồi, cảm ơn bạn nhé... (quay đi tiếp tục làm việc)",
         girlReactionEmoji: "😅",
         softSkills: ["Nhiệt tình thái quá", "Thiếu cảm nhận ranh giới"],
         evaluation: "Đem vật chất hoặc giải pháp cá nhân áp đặt khi chưa quen biết dễ tạo cảm giác khoe mẽ hoặc vồn vã không cần thiết.",
@@ -57,8 +61,8 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Pha trò dí dỏm",
-        text: "Làm vẻ mặt nghiêm túc: 'Bình tĩnh! Hãy để tại hạ thi triển công lực kéo cái ổ cắm bất trị này ra giải cứu laptop của tiểu thư!'",
-        playerMessage: "Bình tĩnh! Hãy để tại hạ thi triển công lực kéo cái ổ cắm bất trị này ra giải cứu laptop cho bạn!",
+        text: "Bình tĩnh! Bluetooth thời 4.0 đôi khi cũng cần tuyệt chiêu 'tắt đi bật lại' như tivi cổ bạn ơi haha, thử xem sao!",
+        playerMessage: "Bình tĩnh! Bluetooth thời hiện đại nhiều khi cũng cần tuyệt chiêu 'tắt đi bật lại' như tivi cổ bạn ơi haha, thử xem sao!",
         girlReply: "Hahaha đại hiệp cứu nguy kịp thời quá! Bái phục bái phục! Cảm ơn đại hiệp nha =))) 🤣",
         girlReactionEmoji: "😆",
         softSkills: ["Hài hước tình huống", "Phá vỡ khoảng cách (Ice-breaking)"],
@@ -73,8 +77,8 @@ window.SCENARIOS_DATA = [
     chapter: "Chương 2",
     chapterTitle: "Tương Phùng Hộp Thư",
     badge: "Mở Đầu Hội Thoại Số",
-    setting: "Phòng Trọ - 21:30 Đêm Sau Buổi Cafe",
-    context: "Chiều hôm đó hai bạn đã kết nối trên mạng xã hội sau khi chào nhau lúc về. Bây giờ là 21:30, bạn vừa ngồi vào bàn học mở máy. Đây là tin nhắn đầu tiên để bắt đầu một cuộc trò chuyện trực tuyến.",
+    setting: "Phòng Trọ — 21:30 Đêm Sau Buổi Thư Viện",
+    context: "Chiều hôm đó hai bạn đã trao đổi liên lạc trước khi chia tay ở sảnh thư viện. Bây giờ là 21:30, Thảo vừa sáng đèn hoạt động mạng xã hội. Đây là tin nhắn đầu tiên để bắt đầu một cuộc trò chuyện trực tuyến.",
     ancientWisdom: "Lời dẫn cổ thư: 'Lời nói đầu tiên qua thư từ tựa như tiếng gõ cửa. Tránh dồn dập như tra hỏi, cũng chớ vồ vập buông lời ong bướm; hãy gõ nhẹ bằng điểm chung chân thực.'",
     girlStatus: "Mới quen",
     initialMessages: [
@@ -85,8 +89,8 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Gợi chuyện kỷ niệm",
-        text: "Nhắc lại khoảnh khắc buổi chiều: 'Chào 'nạn nhân của ổ điện'! Chiều nay về kịp deadline bài tập nhóm không bạn?'",
-        playerMessage: "Chào 'nạn nhân ổ điện'! Chiều nay Thảo về nộp bài tập nhóm kịp deadline không nè?",
+        text: "Chào 'nạn nhân Bluetooth'! Chiều nay Thảo về nộp bài tập nhóm kịp deadline không nè?",
+        playerMessage: "Chào 'nạn nhân Bluetooth'! Chiều nay Thảo về nộp bài tập nhóm kịp deadline không nè?",
         girlReply: "Haha trời ơiii đừng nhắc vụ đó nữa quê xỉu! 🙈 Cơ mà may nộp trước hạn 5 phút hú hồn luôn á bạn!",
         girlReactionEmoji: "😆",
         softSkills: ["Gợi nhắc trải nghiệm chung", "Tạo chủ đề tiếp nối"],
@@ -97,8 +101,8 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Hỏi thăm thông thường",
-        text: "Gửi lời chào cơ bản: 'Chào Thảo, tối nay bạn có bận gì không? Bạn ăn tối chưa thế?'",
-        playerMessage: "Chào Thảo, tối nay bạn có bận gì không? Bạn ăn cơm chưa thế?",
+        text: "Chào Thảo, tối nay bạn có bận gì không? Bạn ăn cơm tối chưa thế?",
+        playerMessage: "Chào Thảo, tối nay bạn có bận gì không? Bạn ăn cơm tối chưa thế?",
         girlReply: "Chào bạn nha, mình ăn rồi nè. Giờ đang lướt mạng xíu thôi à.",
         girlReactionEmoji: "🙂",
         softSkills: ["Lịch sự cơ bản", "Hơi thiếu điểm nhấn"],
@@ -108,21 +112,21 @@ window.SCENARIOS_DATA = [
       },
       {
         id: "C",
-        tag: "Thổ lộ ấn tượng",
-        text: "Nhắn tin tán tỉnh sớm: 'Chiều nay gặp Thảo về làm mình cứ nghĩ mãi... Người đâu mà cười duyên thế không biết.'",
+        tag: "Thổ lộ ấn tượng sớm",
+        text: "Chiều nay gặp Thảo về làm mình cứ nhớ mãi... Bạn cười duyên làm người ta mất tập trung ghê á.",
         playerMessage: "Chiều nay gặp Thảo về làm mình cứ nhớ mãi... Bạn cười duyên làm người ta mất tập trung ghê á.",
         girlReply: "Ủa bạn nói quá rồi nè haha :)) Bạn hay khen các bạn nữ mới quen vậy lắm đúng hông?",
         girlReactionEmoji: "🤨",
         softSkills: ["Vội vàng biểu lộ", "Thiếu căn cứ thực tế"],
-        evaluation: "Khi hai bên chưa có tương tác sâu, khen ngợi mang tính lãng mạn dễ khiến đối phương cảm thấy thiếu chân thành hoặc cảnh giác.",
+        evaluation: "Khi hai bên chưa có tương tác sâu, khen ngợi mang tính lãng mạn sớm dễ khiến đối phương cảnh giác hoặc nghi ngại.",
         ancientComment: "Mầm cây chưa bén rễ đã vội đòi trổ hoa. Lời ngọt ngào sớm quá chỉ khiến người ta nghi ngại động cơ.",
         effects: { communication: 0, confidence: 1, empathy: -1, respect: 0, humor: 0, impression: -1 }
       },
       {
         id: "D",
         tag: "Kể chuyện tếu táo",
-        text: "Kể mẩu tin hài hước: 'Vừa lướt thấy page quán cafe đăng tìm chủ nhân củ sạc bỏ quên, mình giật mình tưởng Thảo haha!'",
-        playerMessage: "Vừa lướt thấy quán cafe đăng tin tìm khách để quên củ sạc, làm mình giật thót tưởng Thảo cơ đấy haha!",
+        text: "Vừa lướt thấy group trường đăng tìm chủ nhân chiếc tai nghe bỏ quên, làm mình giật thót tưởng Thảo haha!",
+        playerMessage: "Vừa lướt thấy group trường đăng tin tìm khách để quên tai nghe, làm mình giật thót tưởng Thảo cơ đấy haha!",
         girlReply: "Ủa thiệt hả?? Làm mình hết hồn chạy đi lục balo! May quá vẫn còn nguyên =))) Bạn khéo dọa người ta ghê!",
         girlReactionEmoji: "🤣",
         softSkills: ["Tạo cảm xúc bất ngờ", "Hài hước nhẹ nhàng"],
@@ -137,8 +141,8 @@ window.SCENARIOS_DATA = [
     chapter: "Chương 3",
     chapterTitle: "Hàn Băng Thử Thách",
     badge: "Thấu Cảm Khi Nhịp Giảm",
-    setting: "Hộp Thư - Tối Ngày Thứ Tư",
-    context: "Sau vài ngày nhắn tin khá rôm rả, tối nay Thảo bỗng dưng rep rất ngắn: 'Dạ', 'Uhm thế à...'. Cảm giác nhịp độ cuộc trò chuyện chùng hẳn xuống. Bạn cần xử lý thế nào để không biến bản thân thành kẻ làm phiền?",
+    setting: "Hộp Thư Tin Nhắn — Tối Thứ Tư Giữa Kỳ",
+    context: "Sau vài ngày nhắn tin ăn ý, tối nay Thảo bỗng dưng phản hồi rất ngắn: 'Dạ không...', 'Uhm thế à...'. Cảm giác nhịp độ cuộc trò chuyện chùng hẳn xuống. Mùa thi cử tiểu luận đang cận kề và Thảo có vẻ đang cạn kiệt năng lượng.",
     ancientWisdom: "Lời dẫn cổ thư: 'Biển có lúc triều lên triều xuống, người có lúc mỏi mệt trầm tư. Thấy đối phương chậm lại, người có trí biết lùi một bước để nhường không gian, không cuống cuồng giục giã.'",
     girlStatus: "Có thiện cảm",
     initialMessages: [
@@ -150,7 +154,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Tôn trọng nhịp điệu",
-        text: "Cảm nhận tinh tế và cho không gian: 'Thấy Thảo trả lời ngắn, chắc hôm nay bạn mệt hoặc bận nhiều việc rồi. Nghỉ ngơi sớm nhé, khi nào thoải mái tụi mình nói chuyện sau nha!'",
+        text: "Nghe chừng hôm nay Thảo cạn pin năng lượng rồi nè. Bạn nghỉ ngơi sớm cho lại sức nha, khi nào rảnh tụi mình nói chuyện sau cũng được nè!",
         playerMessage: "Nghe chừng hôm nay Thảo cạn pin năng lượng rồi nè. Bạn nghỉ ngơi sớm cho lại sức nha, khi nào rảnh tụi mình nói chuyện sau cũng được nè!",
         girlReply: "Ui cảm ơn bạn đã hiểu cho mình nha... Nãy giờ mình đang bị giảng viên mắng vì bài tiểu luận nhóm á, đầu óc căng thẳng quá nên không rep đàng hoàng được. Cảm ơn bạn nhiều vì không phiền lòng nhé 🥺",
         girlReactionEmoji: "🥺",
@@ -162,7 +166,7 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Hỏi rõ nguyên do",
-        text: "Hỏi thẳng lý do ngay: 'Sao nay nói chuyện cụt lủn thế bạn? Có chuyện gì làm bạn khó chịu hay mình nói gì sai hả?'",
+        text: "Sao nay Thảo nói chuyện cụt lủn vậy? Mình làm gì khiến bạn khó chịu hay giận à?",
         playerMessage: "Sao nay Thảo nói chuyện cụt lủn vậy? Mình làm gì khiến bạn khó chịu hay giận à?",
         girlReply: "Hông có gì đâu bạn ơi... Mình đang mệt xíu thôi. Bạn đừng nghĩ nhiều.",
         girlReactionEmoji: "😐",
@@ -173,9 +177,9 @@ window.SCENARIOS_DATA = [
       },
       {
         id: "C",
-        tag: "Gửi meme chuyển hướng",
-        text: "Gửi một bức ảnh meme mèo đáng yêu chắp tay: 'Phát hiện tín hiệu pin yếu! Xin gửi một chiếc meme sạc pin tinh thần haha.'",
-        playerMessage: "Bíp bíp! Hệ thống phát hiện bạn Thảo sắp hết pin. Xin phép gửi một chiếc meme mèo sạc năng lượng haha! [Meme mèo ngủ ngoan]",
+        tag: "Gửi meme xoa dịu",
+        text: "Bíp bíp! Hệ thống phát hiện bạn Thảo sắp hết pin. Xin phép gửi một chiếc meme mèo sạc năng lượng haha! [Meme mèo ngủ]",
+        playerMessage: "Bíp bíp! Hệ thống phát hiện bạn Thảo sắp hết pin. Xin phép gửi một chiếc meme mèo sạc năng lượng haha! [Meme mèo ngủ]",
         girlReply: "Hahaha cute xỉu, đúng lúc mình đang stress nhìn thấy phì cười luôn á! Cảm ơn bạn nha :v",
         girlReactionEmoji: "😹",
         softSkills: ["Hài hước xoa dịu căng thẳng", "Không gây áp lực"],
@@ -185,8 +189,8 @@ window.SCENARIOS_DATA = [
       },
       {
         id: "D",
-        tag: "Tạm im lặng chờ đợi",
-        text: "Không gửi thêm tin nhắn nào, để đối phương yên tĩnh nghỉ ngơi.",
+        tag: "Để không gian tĩnh lặng",
+        text: "(Thả tim nhẹ nhàng vào tin nhắn và để không gian yên tĩnh cho Thảo ngủ sớm, sáng hôm sau mới hỏi thăm)",
         playerMessage: "(Bạn thả biểu cảm nhẹ nhàng và để không gian yên tĩnh cho Thảo nghỉ ngơi)",
         girlReply: "(Sáng hôm sau 07:30) 'Hôm qua mình mệt quá ngủ quên mất tiêu, chúc bạn ngày mới nhiều năng lượng nha!'",
         girlReactionEmoji: "🌤️",
@@ -200,65 +204,65 @@ window.SCENARIOS_DATA = [
   {
     id: 4,
     chapter: "Chương 4",
-    chapterTitle: "Tâm Ma Trận Đồ",
-    badge: "Xử Lý Độ Trễ Giao Tiếp",
-    setting: "Màn Hình Điện Thoại - 14:00 Đến 19:30",
-    context: "Lúc 14:00 chiều, bạn nhắn hỏi Thảo về một quán sách cũ mà cô ấy từng đăng trên trang cá nhân. Tin nhắn hiện 'Đã xem' lúc 14:15. Đến 19:30 tối vẫn chưa có hồi âm. Bạn đang có thời gian rảnh và điện thoại nằm ngay trước mặt.",
-    ancientWisdom: "Lời dẫn cổ thư: 'Lòng dạ nôn nóng là kẻ thù số một của bản lĩnh. Người khác chưa hồi âm, phần nhiều vì cuộc sống bộn bề. Giữ cho tâm mình độc lập, vững vàng mới là gốc rễ của sự cuốn hút.'",
+    chapterTitle: "Hơi Thở Sau Thi",
+    badge: "Tương Tác Đời Thực",
+    setting: "Cổng Trường Đại Học — Chiều Thứ Sáu Tan Ca Thi",
+    context: "Kỳ thi kết thúc. Vừa bước ra cổng trường, bạn tình cờ chạm mặt Thảo. Cô nàng vừa cất bài thi vào balo, thở phào nhẹ nhõm: 'Cuối cùng cũng thi xong môn cuối! Cảm giác như được giải thoát vậy đó trời ơi!'. Đây là cơ hội để hai người có buổi trò chuyện trực tiếp tự nhiên ngoài đời.",
+    ancientWisdom: "Lời dẫn cổ thư: 'Cơ hội như gió mát qua sân, người biết nắm bắt tự nhiên sẽ không biến nó thành gánh nặng. Một lời rủ bình dị đúng lúc hơn trăm lời hẹn mông lung.'",
     girlStatus: "Có thiện cảm",
     initialMessages: [
-      { sender: "player", text: "Thảo ơi, quán sách cũ có ban công hoa giấy đợt trước bạn check-in ở đoạn nào khu quận 1 thế nhỉ?", time: "14:00" },
-      { sender: "system", text: "Thanh Thảo đã xem tin nhắn lúc 14:15.", time: "14:15" },
-      { sender: "system", text: "Hơn 5 tiếng trôi qua không có thêm tín hiệu nào...", time: "19:30" }
+      { sender: "girl", text: "Cuối cùng cũng thi xong môn cuối! Cảm giác như được giải thoát khỏi ngục tù vậy đó trời ơiii 🎉", time: "16:30" },
+      { sender: "player", text: "Chúc mừng Thảo nha! Nhìn mặt tươi tỉnh hẳn lên rồi nè.", time: "16:31" },
+      { sender: "girl", text: "Đúng luônnn, thi xong chỉ muốn kiếm gì đó ngon mát ăn cho đã thôi á! 🤤", time: "16:32" }
     ],
     choices: [
       {
         id: "A",
-        tag: "Tập trung việc riêng",
-        text: "Tắt điện thoại, tập trung đọc sách, chơi thể thao hoặc làm việc cá nhân mà không nhắn thêm gì giục giã.",
-        playerMessage: "(Bạn tắt thông báo, ra ngoài chạy bộ rồi về nấu ăn, không gửi thêm tin nhắn giục)",
-        girlReply: "Huhu xin lỗi bạn nhiều nha! Chiều nay xưởng thực hành bị sự cố điện, tụi mình phải dọn dẹp với nộp mẫu gấp đến giờ mới về tới phòng ăn tối. Quán đó ở hẻm 42 Đinh Tiên Hoàng á bạn!",
-        girlReactionEmoji: "🥺",
-        softSkills: ["Tự chủ cảm xúc", "Độc lập cá nhân", "Không suy diễn tiêu cực"],
-        evaluation: "Không kiểm soát hay phụ thuộc cảm xúc vào tốc độ rep tin nhắn giúp bạn luôn giữ được sự đàng hoàng và tâm thế vững vàng.",
-        ancientComment: "Tâm không loạn bởi sự im lặng của đối phương. Người có thế giới riêng phong phú luôn tỏa ra ánh sáng tự nhiên.",
-        effects: { communication: 2, confidence: 3, empathy: 2, respect: 3, humor: 0, impression: 3 }
+        tag: "Rủ ăn vặt quen thuộc",
+        text: "Gần trường có quán kem bơ dừa nướng ngon đỉnh chóp. Mình tính ghé ăn xả stress, Thảo có muốn lập team cùng đi luôn không nè?",
+        playerMessage: "Gần trường có quán kem bơ dừa nướng ngon xỉu á. Mình tính ghé ăn xả stress nè, Thảo có muốn lập team cùng đi luôn không?",
+        girlReply: "Trời ơiii kem bơ dừa nướng là món ruột của tui luôn á! Đi liền đi liền, đói meo từ trưa tới giờ rồi nè! 🍨🤩",
+        girlReactionEmoji: "🤩",
+        softSkills: ["Tự nhiên gần gũi", "Đúng thời điểm", "Không áp lực câu nệ"],
+        evaluation: "Một lời rủ bình dị, đúng lúc đối phương đang hào hứng, tạo không khí thoải mái như hai người bạn hợp cạ.",
+        ancientComment: "Lấy sự mộc mạc chân phương kết nối tâm hồn. Đơn giản mà hiệu quả lạ kỳ, bước ngoặt tự nhiên hé mở.",
+        effects: { communication: 3, confidence: 2, empathy: 2, respect: 2, humor: 2, impression: 3 }
       },
       {
         id: "B",
-        tag: "Nhắn nhắc nhở trực tiếp",
-        text: "Nhắn thêm vào lúc 19:30: 'Chắc bạn bận dữ lắm hả? Thấy đã xem từ chiều mà chưa thấy rep nè haha.'",
-        playerMessage: "Ủa Thảo bận lắm hả? Thấy seen từ chiều mà chưa thấy rep nè :v",
-        girlReply: "À mình bận việc ở trường thật bạn ơi, lúc đó mở xem nhanh rồi quên mất. Quán ở đường Đinh Tiên Hoàng nha.",
-        girlReactionEmoji: "😐",
-        softSkills: ["Hơi sốt ruột", "Dễ tạo cảm giác bị giám sát"],
-        evaluation: "Nhắc khéo về việc 'seen không rep' có thể khiến đối phương cảm thấy bị theo dõi hoặc cảm thấy có lỗi một cách gượng ép.",
-        ancientComment: "Sự nôn nóng hiện lên câu chữ, dẫu che đậy bằng chữ cười 'haha' cũng khó giấu được cảm giác bứt rứt.",
-        effects: { communication: 0, confidence: -1, empathy: -1, respect: 0, humor: 0, impression: -1 }
+        tag: "Hẹn chung chung",
+        text: "Chúc mừng Thảo nha! Hôm nào rảnh rỗi tụi mình rủ nhau đi ăn mừng sau cũng được nè.",
+        playerMessage: "Chúc mừng Thảo nha! Hôm nào rảnh tụi mình đi cafe ăn mừng sau nha.",
+        girlReply: "Uhm oke nè, để xem cuối tuần này mình có vướng lịch gì không rồi tính sau nha.",
+        girlReactionEmoji: "🙂",
+        softSkills: ["Thiếu sự quyết đoán", "Kế hoạch mơ hồ"],
+        evaluation: "Lời hẹn 'hôm nào' thường dễ trôi vào quên lãng vì bỏ lỡ năng lượng hào hứng ngay trước mắt.",
+        ancientComment: "Lời hẹn mông lung tựa sương khói sớm mai, dễ tan biến vào dòng chảy thường nhật.",
+        effects: { communication: 1, confidence: 0, empathy: 1, respect: 1, humor: 0, impression: 0 }
       },
       {
         id: "C",
-        tag: "Tự nhận phần lỗi",
-        text: "Nhắn tin lo lắng: 'Chắc câu hỏi của mình làm phiền bạn quá hả... Xin lỗi bạn nếu mình nhắn không đúng lúc nhé.'",
-        playerMessage: "Chắc câu hỏi của mình làm phiền bạn hả... Xin lỗi nếu mình làm phiền thời gian của Thảo nhé.",
-        girlReply: "Đâu có gì đâu bạn ơi, do mình bận thật mà... Bạn đừng nghĩ nhiều quá nha, làm mình ngại á.",
-        girlReactionEmoji: "😥",
-        softSkills: ["Thiếu tự tin", "Cường điệu hóa sự việc"],
-        evaluation: "Xin lỗi không cần thiết khi đối phương chỉ đơn giản là bận rộn sẽ làm giảm giá trị bản thân và khiến họ cảm thấy lúng túng.",
-        ancientComment: "Hạ mình quá mức trước điều bình thường của thế sự, không những không mang lại thiện cảm mà còn tạo sự khó xử.",
-        effects: { communication: -1, confidence: -2, empathy: 0, respect: 0, humor: -1, impression: -1 }
+        tag: "Áp đặt lịch trình",
+        text: "Tối nay 19h mình qua đón Thảo đi ăn nhà hàng nướng sang chảnh mừng thi xong nhé. Cứ để mình lo hết, bạn không cần chuẩn bị gì đâu!",
+        playerMessage: "Tối nay 19h mình qua đón Thảo đi ăn đồ nướng sang xịn nhé. Bạn không cần lo gì hết, mình đặt bàn sẵn rồi đó!",
+        girlReply: "À... cảm ơn ý tốt của bạn nha, nhưng tối nay mình có hẹn ăn cơm với cả nhà rồi á. Với lại tụi mình đi ăn vặt bình thường cho tiện hơn nha.",
+        girlReactionEmoji: "😅",
+        softSkills: ["Hơi áp đặt", "Chưa lắng nghe nhu cầu đối phương"],
+        evaluation: "Tự ý sắp xếp mọi thứ mà không hỏi trước ý kiến dễ tạo cảm giác thiếu tôn trọng và gây áp lực cho đối phương.",
+        ancientComment: "Lòng nhiệt tình biến thành sự chuyên quyền áp đặt. Thiếu đi sự thương thảo bình đẳng giữa đôi bên.",
+        effects: { communication: 0, confidence: 2, empathy: -2, respect: -2, humor: 0, impression: -1 }
       },
       {
         id: "D",
-        tag: "Đăng Story gián tiếp",
-        text: "Đăng Story đĩa cơm tự nấu ngon lành với caption vui vẻ, không đả động gì tới chuyện chờ tin nhắn.",
-        playerMessage: "(Đăng Story đĩa mì spaghetti tự nấu thơm phức kèm caption: 'Hôm nay tự thưởng cho mình một bữa ngon lành')",
-        girlReply: "Oa đĩa mì nhìn ngon xỉu luôn á! Chiều nay mình bận ở xưởng giờ mới ăn bánh mì tạm bợ nè huhu. À quán sách ở hẻm 42 Đinh Tiên Hoàng nha bạn!",
-        girlReactionEmoji: "😋",
-        softSkills: ["Chia sẻ năng lượng tích cực", "Chuyển hướng chủ động"],
-        evaluation: "Thay vì chờ đợi trong bực bội, tập trung sống tốt cuộc sống của mình là cách gián tiếp khơi lại cuộc trò chuyện rất tự nhiên.",
-        ancientComment: "Chăm chút cho khu vườn của chính mình, bướm ong ắt tự tìm đến. Phong thái điềm đạm đáng quý.",
-        effects: { communication: 2, confidence: 3, empathy: 1, respect: 2, humor: 2, impression: 2 }
+        tag: "Đi bộ trò chuyện",
+        text: "Mình cũng đang đi bộ ra trạm xe buýt nè, đi cùng một đoạn nói chuyện cho vui, kể nghe thi cử làm bài ổn không?",
+        playerMessage: "Mình cũng đang đi bộ ra trạm xe buýt nè, đi cùng một đoạn nói chuyện cho vui, kể mình nghe thi cử làm bài ổn không?",
+        girlReply: "Haha đi chung đi! Cảm giác lâu lắm mới thở phào được, tuần rồi ôn thi căng thẳng muốn xỉu luôn á bạn ơi...",
+        girlReactionEmoji: "🤗",
+        softSkills: ["Giao tiếp chân thực", "Tạo sự đồng hành"],
+        evaluation: "Đề nghị đơn giản, tự nhiên, mở ra không gian để đối phương chia sẻ và cảm nhận sự hiện diện chân thành của bạn.",
+        ancientComment: "Bước chân cạnh nhau trên cùng một lối, khoảng cách tự nhiên thu ngắn lại không cần màu mè hoa mỹ.",
+        effects: { communication: 2, confidence: 2, empathy: 3, respect: 2, humor: 1, impression: 2 }
       }
     ]
   },
@@ -267,63 +271,63 @@ window.SCENARIOS_DATA = [
     chapter: "Chương 5",
     chapterTitle: "Xuất Chiêu Hẹn Ước",
     badge: "Kỹ Năng Đưa Ra Lời Mời",
-    setting: "Tối Thứ Tư - Sau Gần 3 Tuần Trò Chuyện",
-    context: "Sau 3 tuần nhắn tin ăn ý, hai bạn thường xuyên chia sẻ về sở thích nhiếp ảnh, sách và triển lãm. Thảo vừa nhắc đến việc dạo này thi cử xong thấy nhẹ nhõm và muốn ra ngoài hít thở không khí. Đây là cơ hội tốt để gửi lời mời gặp mặt trực tiếp.",
+    setting: "Hộp Thư Trò Chuyện — Tối Thứ Ba Tuần Kế Tiếp",
+    context: "Sau buổi đi ăn kem vui vẻ, hai bạn thường xuyên nhắn tin chia sẻ về sở thích nhiếp ảnh, sách và nghệ thuật. Thảo vừa đăng một bức ảnh phim cũ kèm dòng trạng thái: 'Ước gì cuối tuần này được đi đâu đó chụp choẹt ngắm nghía cho đỡ ngột ngạt'. Đây là thời cơ chín muồi để gửi một lời mời chính thức.",
     ancientWisdom: "Lời dẫn cổ thư: 'Mời hẹn người khác cốt ở ba điều: Đúng sở thích chung, thời gian địa điểm rõ ràng, và quan trọng nhất là mở sẵn một lối lui thoải mái nếu người ta bận việc.'",
     girlStatus: "Khá thân",
     initialMessages: [
-      { sender: "girl", text: "Cuối cùng cũng thi xong môn cuối! Cảm giác như được giải thoát khỏi ngục tù vậy đó trời ơiii 🎉", time: "20:30" },
-      { sender: "player", text: "Chúc mừng Thảo nha! Xong xuôi hết rồi giờ chỉ còn nạp năng lượng thôi nè.", time: "20:31" },
-      { sender: "girl", text: "Đúng luônnn, cuối tuần này mình chỉ muốn đi đâu đó thư giãn chụp choẹt xíu cho đỡ ngột ngạt.", time: "20:32" }
+      { sender: "girl", text: "Cuối tuần này mình chỉ muốn đi đâu đó thư giãn chụp choẹt xíu cho đầu óc nhẹ nhõm ✨", time: "20:30" },
+      { sender: "player", text: "Thảo có điểm đến nào trong đầu chưa nè?", time: "20:31" },
+      { sender: "girl", text: "Chưa nữa, bạn bè đứa nào cũng bận rộn hết trơn á 🤷‍♀️", time: "20:32" }
     ],
     choices: [
       {
         id: "A",
         tag: "Lên lịch trình theo gu",
-        text: "Mời đi triển lãm ảnh: 'Bảo tàng Mỹ thuật đang có triển lãm ảnh phim Sài Gòn xưa đúng gu Thảo nè. Chiều Thứ Bảy bạn rảnh không, tụi mình dạo ngắm ảnh rồi uống nước? Nếu bận thì dịp khác cũng thoải mái nha!'",
-        playerMessage: "Bên Bảo tàng Mỹ thuật đang có triển lãm ảnh phim đúng gu Thảo nè. Chiều Thứ Bảy bạn rảnh không, tụi mình cùng đi dạo xem ảnh rồi làm ly nước? Nếu cuối tuần bạn có lịch với gia đình thì để dịp khác cũng hoàn toàn thoải mái nha!",
+        text: "Bên Bảo tàng Mỹ thuật đang có triển lãm ảnh phim Sài Gòn xưa đúng gu Thảo nè. Chiều Thứ Bảy rảnh tụi mình cùng đi ngắm ảnh rồi làm ly nước nha? Nếu bận việc gia đình thì dịp khác cũng hoàn toàn thoải mái nè!",
+        playerMessage: "Bên Bảo tàng Mỹ thuật đang có triển lãm ảnh phim đúng gu Thảo nè. Chiều Thứ Bảy bạn rảnh không, tụi mình cùng đi dạo xem ảnh rồi làm ly nước? Nếu cuối tuần bạn vướng lịch gia đình thì để dịp khác cũng hoàn toàn thoải mái nha!",
         girlReply: "Oa triển lãm đó mình đang tính rủ bạn nào đi chung luôn á!! Trùng hợp ghê! Thứ Bảy từ 15h mình rảnh nè, chốt kèo nha bạn ơiii! ✨🎨",
         girlReactionEmoji: "🎉",
         softSkills: ["Đề xuất có định hướng", "Tôn trọng lịch trình cá nhân", "Tạo đường lui lịch sự"],
-        evaluation: "Lời mời hoàn hảo: dựa trên sở thích đối phương, thời gian địa điểm cụ thể, và quan trọng nhất là không tạo áp lực phải nhận lời.",
+        evaluation: "Lời mời hoàn hảo: dựa trên sở thích đối phương, thời gian địa điểm cụ thể, và không tạo áp lực phải nhận lời.",
         ancientComment: "Mũi tên nhắm đúng đích, đường lui rộng mở thanh cao. Lời mời tự nhiên như mây trôi nước chảy, ai nỡ chối từ.",
         effects: { communication: 3, confidence: 3, empathy: 3, respect: 3, humor: 1, impression: 3 }
       },
       {
         id: "B",
-        tag: "Ngỏ ý hẹn khi rảnh",
-        text: "Mời chung chung: 'Hôm nào rảnh tụi mình đi cafe chơi nhé Thảo?'",
-        playerMessage: "Hay là hôm nào rảnh tụi mình đi cafe chơi nha Thảo?",
-        girlReply: "Uhm oke nè, để xem cuối tuần này mình có vướng lịch học thêm gì không rồi mình báo bạn sau nha.",
+        tag: "Rủ bâng quơ",
+        text: "Hay là cuối tuần này Thảo rảnh thì tụi mình đi cafe chơi nhé, rảnh giờ nào hú mình giờ đó nha!",
+        playerMessage: "Hay là hôm nào rảnh tụi mình đi cafe chơi nha Thảo, rảnh lúc nào hú mình lúc đó nè.",
+        girlReply: "Uhm oke nè, để xem cuối tuần này mình có vướng học thêm gì không rồi mình báo bạn sau nha.",
         girlReactionEmoji: "🙂",
         softSkills: ["Thiếu sự quyết đoán", "Kế hoạch mơ hồ"],
-        evaluation: "Lời hẹn 'hôm nào' thường dễ trôi vào quên lãng vì không có thời gian và mục đích cụ thể để đối phương sắp xếp.",
+        evaluation: "Lời hẹn chung chung dễ trôi vào quên lãng vì thiếu kế hoạch và mục đích cụ thể để đối phương sắp xếp.",
         ancientComment: "Lời hẹn mông lung tựa sương khói sớm mai, dễ tan biến vào dòng chảy thường nhật.",
         effects: { communication: 1, confidence: 0, empathy: 1, respect: 1, humor: 0, impression: 0 }
       },
       {
         id: "C",
-        tag: "Chủ động chốt thời gian",
-        text: "Đưa ra lịch trình cố định: 'Tối Thứ Bảy 19h mình đón bạn đi ăn nhà hàng nướng nhé. Bạn không cần chuẩn bị gì đâu, cứ để mình lo.'",
-        playerMessage: "Tối Thứ Bảy 19h mình qua đón Thảo đi ăn đồ nướng nha. Bạn không cần lo gì hết, mình đặt bàn sẵn rồi đó!",
-        girlReply: "À... cảm ơn ý tốt của bạn nha, nhưng tối Thứ Bảy mình có hẹn ăn cơm với cả nhà rồi á. Với lại tụi mình đi cafe trước cho tiện hơn nha.",
+        tag: "Sắp xếp độc đoán",
+        text: "Thứ Bảy mình lên lịch rồi: 14h đón Thảo đi cafe sang, 16h xem phim rạp, 18h ăn tối. Cứ theo lịch mình nhé!",
+        playerMessage: "Tối Thứ Bảy 19h mình qua đón Thảo đi ăn nhà hàng sang chảnh nhé. Bạn không cần lo gì hết, mình đặt bàn sẵn rồi đó!",
+        girlReply: "À... bạn nhiệt tình quá, nhưng mình thích đi đâu đó nhẹ nhàng tự do hơn á. Với lại lịch kín quá làm mình hơi ngộp.",
         girlReactionEmoji: "😅",
-        softSkills: ["Hơi áp đặt", "Chưa lắng nghe nhu cầu đối phương"],
-        evaluation: "Tự ý sắp xếp mọi thứ mà không hỏi trước ý kiến dễ tạo cảm giác thiếu tôn trọng và gây áp lực cho đối phương trong buổi hẹn đầu.",
+        softSkills: ["Nhiệt tình thái quá", "Áp đặt sở thích"],
+        evaluation: "Sắp đặt mọi thứ theo ý mình mà không hỏi ý kiến đối phương dễ tạo cảm giác thiếu tôn trọng và ngột ngạt.",
         ancientComment: "Lòng nhiệt tình biến thành sự chuyên quyền áp đặt. Thiếu đi sự thương thảo bình đẳng giữa đôi bên.",
         effects: { communication: 0, confidence: 2, empathy: -2, respect: -2, humor: 0, impression: -1 }
       },
       {
         id: "D",
-        tag: "Rủ kèo ăn uống quen thuộc",
-        text: "Rủ đi ăn món vặt vỉa hè: 'Gần trường có quán kem bơ dừa nướng ngon đỉnh chóp. Mình tính đi ăn xả stress, Thảo có muốn nhập hội không?'",
-        playerMessage: "Gần trường mới mở quán kem bơ dừa nướng ngon xỉu á. Chiều Thứ Sáu tan học mình tính ghé ăn xả stress, Thảo có muốn lập team cùng đi không nè?",
-        girlReply: "Trời ơiii kem bơ dừa nướng là món ruột của tui luôn á! Được nha, chiều Thứ Sáu tan học 17h hú mình với nha! 🍨🤤",
+        tag: "Khám phá tiệm sách cũ",
+        text: "Gần trường có tiệm sách cũ có ban công hoa giấy chụp ảnh phim thơ mộng lắm. Chiều Thứ Bảy tụi mình ghé khám phá rồi ngồi cafe trò chuyện không Thảo?",
+        playerMessage: "Gần trường có tiệm sách cũ có ban công hoa giấy chụp ảnh phim thơ lắm. Chiều Thứ Bảy tụi mình ghé khám phá rồi ngồi cafe trò chuyện không nè?",
+        girlReply: "Tiệm sách cũ ban công hoa giấy?? Nghe mê quá vậy nè! Chiều Thứ Bảy 15h tụi mình đi nha, để mình mang theo máy ảnh phim luôn! 📸☕",
         girlReactionEmoji: "🤩",
-        softSkills: ["Tự nhiên gần gũi", "Không áp lực hẹn hò câu nệ"],
-        evaluation: "Một lời rủ bình dị, phù hợp với đời sống sinh viên, tạo không khí thoải mái như hai người bạn hợp cạ.",
-        ancientComment: "Lấy sự mộc mạc chân phương kết nối tâm hồn. Đơn giản mà hiệu quả lạ kỳ.",
-        effects: { communication: 2, confidence: 2, empathy: 2, respect: 2, humor: 2, impression: 2 }
+        softSkills: ["Tự nhiên gần gũi", "Đánh trúng sở thích"],
+        evaluation: "Gợi ý một điểm đến thi vị, mộc mạc và đúng sở thích của đối phương, tạo cảm giác đồng điệu tâm hồn.",
+        ancientComment: "Lấy cái đẹp tao nhã làm nhịp cầu nối, ý tứ tương đồng, niềm vui nhân lên gấp bội.",
+        effects: { communication: 3, confidence: 2, empathy: 3, respect: 2, humor: 1, impression: 3 }
       }
     ]
   },
@@ -331,9 +335,9 @@ window.SCENARIOS_DATA = [
     id: 6,
     chapter: "Chương 6",
     chapterTitle: "Thấu Tâm Chi Đạo",
-    badge: "Lắng Nghe Khi Đối Phương Yếu Lòng",
-    setting: "Đêm Muộn 22:45 - Sau Buổi Gặp Mặt 1 Tuần",
-    context: "Buổi đi chơi tuần trước diễn ra rất vui vẻ và ấm áp. Nhưng tối nay, Thảo nhắn tin lúc nửa đêm với tâm trạng nặng trĩu: dự án tốt nghiệp bị giảng viên phê bình gay gắt, một thành viên trong nhóm bỏ dở việc khiến nàng phải gánh hết, áp lực dồn nén khiến Thảo bật khóc.",
+    badge: "Lắng Nghe Khi Nàng Yếu Lòng",
+    setting: "Đêm Muộn 22:45 — Sau Buổi Hẹn 1 Tuần",
+    context: "Buổi đi chơi tuần trước diễn ra rất vui vẻ và ấm áp. Nhưng tối nay, Thảo nhắn tin lúc nửa đêm với tâm trạng nặng trĩu: dự án tốt nghiệp bị giảng viên phê bình gay gắt, một thành viên trong nhóm bỏ dở việc khiến nàng phải gánh hết, áp lực dồn nén khiến Thảo bật khóc một mình.",
     ancientWisdom: "Lời dẫn cổ thư: 'Khi người khác đang đau buồn, điều họ cần nhất là sự thấu hiểu và một đôi tai biết lắng nghe, chứ không phải một bài thuyết giảng đạo lý hay những lời dạy dỗ đúng sai.'",
     girlStatus: "Rất tin tưởng",
     initialMessages: [
@@ -343,9 +347,9 @@ window.SCENARIOS_DATA = [
     choices: [
       {
         id: "A",
-        tag: "Lắng nghe & đồng cảm",
-        text: "Thấu cảm và làm chỗ dựa: 'Nghe thương Thảo ghê... Bao nhiêu áp lực dồn lên một mình bạn lúc này chắc kiệt sức lắm. Thảo đã nỗ lực hết mình rồi. Bạn có muốn tâm sự cho nhẹ lòng không, mình luôn ở đây lắng nghe nè.'",
-        playerMessage: "Nghe thương Thảo ghê... Bao nhiêu áp lực dồn lên một mình bạn lúc này chắc mệt mỏi lắm. Thảo đã cố gắng hết sức rồi mà. Bây giờ bạn muốn trút hết tâm sự ra cho nhẹ lòng, hay muốn nghỉ ngơi yên tĩnh một chút nè? Mình luôn ở đây lắng nghe Thảo nha.",
+        tag: "Lắng nghe & thấu cảm",
+        text: "Nghe thương Thảo ghê... Bao nhiêu áp lực dồn lên một mình bạn lúc này chắc mệt mỏi lắm. Thảo đã cố gắng hết sức rồi mà. Bây giờ bạn muốn trút hết tâm sự ra cho nhẹ lòng, hay muốn nghỉ ngơi yên tĩnh nè? Mình luôn ở đây lắng nghe Thảo nha.",
+        playerMessage: "Nghe thương Thảo ghê... Bao nhiêu áp lực dồn lên một mình bạn lúc này chắc mệt mỏi lắm. Thảo đã cố gắng hết sức rồi mà. Bây giờ bạn muốn trút hết tâm sự ra cho nhẹ lòng, hay muốn nghỉ ngơi yên tĩnh nè? Mình luôn ở đây lắng nghe Thảo nha.",
         girlReply: "Cảm ơn bạn nhiều lắm... Đọc tin nhắn của bạn tự dưng mình thấy nhẹ nhõm hơn hẳn á. Cảm ơn vì đã luôn dịu dàng và lắng nghe mình những lúc thế này... Cho mình gọi điện kể bạn nghe một xíu được hông? 🥺❤️",
         girlReactionEmoji: "🥹",
         softSkills: ["Lắng nghe thấu cảm (Empathetic Listening)", "Xác nhận cảm xúc (Emotional Validation)"],
@@ -355,8 +359,8 @@ window.SCENARIOS_DATA = [
       },
       {
         id: "B",
-        tag: "Phân tích giải pháp",
-        text: "Đưa ra lời khuyên logic ngay: 'Theo mình bạn nên lập lại bảng phân chia công việc, gửi mail báo cáo thẳng cho giảng viên về bạn bỏ nhóm kia để trừ điểm là xong.'",
+        tag: "Phân tích logic ngay",
+        text: "Theo mình bạn nên lập lại bảng phân chia công việc rõ ràng, rồi gửi mail báo cáo thẳng cho thầy về bạn bỏ nhóm kia để thầy trừ điểm. Phải làm dứt khoát như vậy mới xử lý được vấn đề Thảo à.",
         playerMessage: "Theo mình bạn nên lập lại bảng phân chia công việc rõ ràng, rồi gửi mail báo cáo thẳng cho thầy về bạn bỏ nhóm kia để thầy trừ điểm. Phải làm việc dứt khoát như vậy mới xử lý được vấn đề Thảo à.",
         girlReply: "Uhm... mình biết cách xử lý chứ, nhưng lúc này mình đang mệt quá chưa nghĩ nổi tới mấy cái đó. Thôi mình đi ngủ đây, cảm ơn bạn đã khuyên.",
         girlReactionEmoji: "😔",
@@ -367,20 +371,20 @@ window.SCENARIOS_DATA = [
       },
       {
         id: "C",
-        tag: "Động viên tích cực",
-        text: "Gạt nỗi buồn: 'Thôi đừng buồn nữa bạn ơi! Chuyện nhỏ mà, ngày mai mọi thứ sẽ ổn thôi, cười lên nào!'",
+        tag: "Động viên sáo rỗng",
+        text: "Thôi đừng buồn nữa Thảo ơi! Chuyện nhỏ như con thỏ ấy mà, ngoài kia còn bao nhiêu chuyện khó hơn nhiều. Lạc quan lên, cười một cái xem nào!",
         playerMessage: "Thôi đừng buồn nữa Thảo ơi! Chuyện nhỏ như con thỏ ấy mà, ngoài kia còn bao nhiêu chuyện khó hơn nhiều. Lạc quan lên, cười một cái xem nào!",
         girlReply: "(Thảo đã xem tin nhắn và một lúc lâu sau chỉ nhắn lại: 'Uhm cảm ơn bạn.')",
         girlReactionEmoji: "🤐",
         softSkills: ["Lạc quan độc hại (Toxic Positivity)"],
-        evaluation: "Hạ thấp hoặc phủ nhận nỗi buồn của người khác bằng sự lạc quan sáo rỗng vô tình khiến họ cảm thấy cảm xúc của mình không có giá trị.",
+        evaluation: "Hạ thấp nỗi buồn của người khác bằng sự lạc quan sáo rỗng vô tình khiến họ cảm thấy cảm xúc của mình không có giá trị.",
         ancientComment: "Xem nhẹ nỗi đau của người khác dẫu xuất phát từ ý tốt, cũng vô tình trở thành bức tường ngăn cách sự thấu hiểu.",
         effects: { communication: -1, confidence: 0, empathy: -3, respect: -1, humor: -1, impression: -2 }
       },
       {
         id: "D",
-        tag: "Gửi quà ngọt ngào",
-        text: "Đặt một món đồ uống ấm giao tới phòng trọ nàng kèm lời nhắn nhẹ nhàng.",
+        tag: "Chăm sóc bằng hành động",
+        text: "Mình vừa đặt một ly trà hoa cúc mật ong ấm kèm chút bánh ngọt đang ship đến cổng trọ Thảo nè. Uống chút ấm bụng rồi ngủ thật ngon nha, ngày mai ngủ dậy đầu óc sẽ sáng suốt hơn!",
         playerMessage: "Mình vừa đặt một ly trà hoa cúc mật ong ấm kèm chút bánh ngọt đang ship đến cổng trọ Thảo nè. Uống chút ấm bụng rồi ngủ thật ngon nha, ngày mai ngủ dậy đầu óc sẽ sáng suốt hơn!",
         girlReply: "Trời ơiii bạn chu đáo quá làm mình xúc động muốn khóc thêm lần nữa á... Shipper vừa gọi mình ra lấy rồi nè. Cảm ơn bạn nhiều nhiều lắm nha! 😭🧋",
         girlReactionEmoji: "😭",
@@ -396,7 +400,7 @@ window.SCENARIOS_DATA = [
     chapter: "Chương 7",
     chapterTitle: "Định Mệnh Nguyệt Lão",
     badge: "Bước Ngoặt Tình Cảm & Chân Tình",
-    setting: "Bờ Hồ Gió Mát - Đêm Thu Trăng Sáng",
+    setting: "Bờ Hồ Gió Mát — Đêm Thu Trăng Sáng",
     context: "Sau hơn một tháng gắn bó qua đủ cung bậc cảm xúc, hai bạn đang ngồi cạnh nhau trên băng ghế đá ven hồ sau buổi dạo phố. Thảo khẽ nghiêng đầu nhìn bạn dưới ánh đèn vàng ấm áp và thì thầm: 'Dạo này ở cạnh bạn... mình thấy rất bình yên và vui. Đối với bạn... mình là một người như thế nào thế?'",
     ancientWisdom: "Lời dẫn cổ thư: 'Đến hồi chung cuộc, mọi mưu kế đều vô nghĩa trước sự chân thành. Lời tỏ bày phải xuất phát từ sự tôn trọng trọn vẹn danh dự và tự do của đối phương.'",
     girlStatus: "Đang rung động",
@@ -408,8 +412,8 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Bày tỏ chân thành",
-        text: "Nói lời chân thật từ đáy lòng: 'Từ ngày gặp ở quán cafe đến giờ, mỗi lần trò chuyện với Thảo đều khiến cuộc sống của mình tươi vui hơn. Mình thật sự rất quý trọng và có tình cảm đặc biệt với bạn. Mình muốn được chính thức đồng hành cùng Thảo.'",
-        playerMessage: "Từ cái ngày gặp ở quán cafe sách đến giờ, mỗi khoảnh khắc được trò chuyện cùng Thảo đều làm cuộc sống của mình ý nghĩa hơn rất nhiều. Với mình, bạn là một người vô cùng đặc biệt. Mình muốn được đồng hành và quan tâm Thảo một cách nghiêm túc và chân thành nhất.",
+        text: "Từ cái ngày gặp ở thư viện đến giờ, mỗi khoảnh khắc được trò chuyện cùng Thảo đều làm cuộc sống của mình ý nghĩa hơn rất nhiều. Với mình, Thảo là người vô cùng đặc biệt. Mình muốn được chính thức đồng hành và chăm sóc bạn.",
+        playerMessage: "Từ cái ngày gặp ở thư viện đến giờ, mỗi khoảnh khắc được trò chuyện cùng Thảo đều làm cuộc sống của mình ý nghĩa hơn rất nhiều. Với mình, bạn là một người vô cùng đặc biệt. Mình muốn được đồng hành và quan tâm Thảo một cách nghiêm túc và chân thành nhất.",
         girlReply: "Mình cũng chờ câu nói này từ bạn lâu lắm rồi... Cảm ơn bạn vì đã luôn kiên nhẫn, tinh tế và dịu dàng với mình nhé! Em đồng ý ❤️✨",
         girlReactionEmoji: "💍",
         softSkills: ["Bày tỏ chân thành", "Chịu trách nhiệm cảm xúc", "Dũng cảm"],
@@ -419,20 +423,20 @@ window.SCENARIOS_DATA = [
       },
       {
         id: "B",
-        tag: "Hạ nhiệt bằng đùa vui",
-        text: "Né tránh câu trả lời bằng cách cười trừ: 'Haha thì là bạn thân cùng tiến chứ là gì nữa cô nương, hỏi câu khó đỡ ghê!'",
+        tag: "Hạ nhiệt bằng đùa cợt",
+        text: "Haha thì là 'chiến hữu' cùng tiến chứ là gì nữa cô nương ơi, tự nhiên hôm nay hỏi câu sâu sắc khó đỡ ghê haha!",
         playerMessage: "Haha thì là 'chiến hữu' cùng tiến chứ là gì nữa cô nương ơi, tự nhiên hôm nay hỏi câu sâu sắc khó đỡ ghê haha!",
-        girlReply: "À... ra là 'chiến hữu' thôi hả. Mình hiểu rồi, cảm ơn bạn đã nói rõ cho mình biết nha.",
+        girlReply: "À... ra là 'chiến hữu' thôi hả. Mình hiểu rồi, cảm ơn bạn đã nói rõ cho mình biết nha. (Thảo khẽ nhìn ra mặt hồ, nụ cười thoáng tắt)",
         girlReactionEmoji: "💔",
         softSkills: ["Né tránh cam kết", "Sợ tổn thương nên phòng thủ"],
         evaluation: "Đùa cợt vào thời điểm đối phương đang nghiêm túc mở lòng dễ làm họ cảm thấy bị coi thường và khép lại cánh cửa cảm xúc.",
-        ancientComment: "Hèn nhát né tránh lúc the chốt, đem chân tình làm trò đùa cợt, tự tay đẩy cơ duyên vào chốn bạn bè xa cách.",
+        ancientComment: "Hèn nhát né tránh lúc then chốt, đem chân tình làm trò đùa cợt, tự tay đẩy cơ duyên vào chốn bạn bè xa cách.",
         effects: { communication: -1, confidence: -2, empathy: -2, respect: -1, humor: 1, impression: -3 }
       },
       {
         id: "C",
-        tag: "Khẳng định kỳ vọng",
-        text: "Tỏ tình mang tính đòi hỏi: 'Làm người yêu mình đi, mình theo đuổi Thảo cả tháng nay tốn bao nhiêu công sức rồi đó nha!'",
+        tag: "Tỏ tình kiểu kể công",
+        text: "Làm người yêu mình đi Thảo ơi, mình theo đuổi Thảo cả tháng nay tốn bao nhiêu công sức tâm huyết rồi đấy nhé!",
         playerMessage: "Làm người yêu mình đi Thảo ơi, mình theo đuổi bạn cả tháng nay tốn bao nhiêu công sức tâm huyết rồi đấy nhé!",
         girlReply: "Ủa bạn đang kể công với mình đấy à? Tình cảm là chuyện tự nguyện chứ đâu phải hợp đồng đổi chác đâu bạn. Mình thấy hơi thất vọng á.",
         girlReactionEmoji: "😠",
@@ -444,9 +448,9 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Ẩn dụ phong nhã",
-        text: "Mượn hình ảnh lãng mạn nhẹ nhàng: 'Bí kíp tình trường có thể có trăm chương, nhưng điều đẹp nhất mình học được là sự chân thành khi ở cạnh Thảo. Nếu Thảo bằng lòng, mình mong được cùng bạn viết tiếp những trang tiếp theo.'",
+        text: "Bí kíp trên đời có trăm chương, nhưng điều đẹp nhất mình học được chính là sự chân thành khi ở cạnh bạn. Nếu Thảo bằng lòng, mình rất mong được cùng bạn viết tiếp những ngày tháng sau này.",
         playerMessage: "Bí kíp trên đời có trăm chương, nhưng điều đẹp nhất mình học được chính là sự chân thành khi ở cạnh bạn. Nếu Thảo bằng lòng, mình rất mong được cùng bạn viết tiếp những ngày tháng sau này.",
-        girlReply: "Hahaha đại hiệp mượn lời văn vẻ ghê á! Cơ mà nghe ngọt ngào và dễ thương lắm... Mình đồng ý đồng hành cùng bạn nha! 🌸🥰",
+        girlReply: "Hahaha đại hiệp mượn lời văn vẻ ghê á! Cơ mà nghe ngọt ngào và chân thành lắm... Em đồng ý cùng anh bước tiếp nha! 🌸🥰",
         girlReactionEmoji: "🌸",
         softSkills: ["Nghệ thuật ngôn từ", "Vừa dí dỏm vừa trân trọng"],
         evaluation: "Kết hợp chất lãng mạn nhẹ nhàng với sự chân thành tôn trọng, tạo cảm giác vừa bay bổng vừa ấm áp.",
@@ -457,44 +461,67 @@ window.SCENARIOS_DATA = [
   }
 ];
 
-// Hàm xác định phản ứng kết thúc Chương 7 dựa trên toàn bộ hành trình
-window.getChapter7BranchingResponse = function(stats, choicesHistory) {
-  const respect = stats.respect || 0;
-  const impression = stats.impression || 0;
-  const empathy = stats.empathy || 0;
-
-  if (respect < -2) {
+// Hàm xác định phản ứng kết thúc Chương 7 dựa trên lựa chọn hiện tại VÀ toàn bộ hành trình
+window.getChapter7BranchingResponse = function(choice, stats, choicesHistory) {
+  // 1. Nếu chọn B (Né tránh bằng đùa cợt)
+  if (choice && choice.id === "B") {
     return {
-      status: "boundary",
-      reply: "Cảm ơn bạn đã nói ra suy nghĩ. Nhưng qua thời gian tiếp xúc, mình thấy cách giao tiếp của bạn đôi lúc làm mình thấy không thoải mái và thiếu được tôn trọng. Mình nghĩ tụi mình nên dừng lại ở mức bạn bè xã giao thôi nhé.",
+      status: "evaded",
+      reply: "À... ra là 'chiến hữu' thôi hả. Mình hiểu rồi, cảm ơn bạn đã nói rõ cho mình biết nha. (Thảo khẽ nhìn ra mặt hồ, nụ cười thoáng tắt...)",
+      emoji: "💔",
+      ancientComment: "Hèn nhát né tránh lúc then chốt, đem chân tình làm trò đùa cợt, tự tay đẩy cơ duyên vào chốn bạn bè xa cách."
+    };
+  }
+
+  // 2. Nếu chọn C (Kể công, ép buộc)
+  if (choice && choice.id === "C") {
+    return {
+      status: "entitled_fail",
+      reply: "Ủa bạn đang kể công với mình đấy à? Tình cảm là chuyện tự nguyện của hai người chứ đâu phải món nợ đổi chác đâu bạn. Mình thật sự thấy hơi thất vọng và e ngại cách nghĩ này...",
+      emoji: "😠",
+      ancientComment: "Đem ân tình biến thành món nợ đòi hỏi, tâm cơ lộ liễu, tự tay đạp đổ mọi công sức xây đắp bấy lâu."
+    };
+  }
+
+  // 3. Nếu chọn A (Chân thành) hoặc D (Ẩn dụ lãng mạn):
+  // Phụ thuộc vào chất lượng hành trình từ Chương 1 đến Chương 6
+  const respect = (stats && stats.respect) || 0;
+  const impression = (stats && stats.impression) || 0;
+  const empathy = (stats && stats.empathy) || 0;
+
+  // Thất bại vì thiếu tôn trọng ranh giới trong suốt hành trình
+  if (respect < 3) {
+    return {
+      status: "boundary_fail",
+      reply: "Cảm ơn bạn đã nói ra suy nghĩ. Nhưng qua thời gian tiếp xúc vừa qua, mình thấy cách giao tiếp của bạn đôi lúc làm mình thấy ngột ngạt và thiếu được tôn trọng. Mình nghĩ tụi mình nên dừng lại ở mức bạn bè xã giao thôi nhé.",
       emoji: "🛑",
       ancientComment: "Tôn trọng là nền tảng tối cao của giao tiếp. Thiếu đi sự tôn trọng thì ngàn vạn lời hay cũng chỉ là vô nghĩa."
     };
-  } else if (impression < 4 || empathy < 2) {
+  }
+
+  // Thất bại vì thiếu sự thấu hiểu hoặc ấn tượng nhạt nhòa
+  if (impression < 7 || empathy < 4) {
     return {
-      status: "polite_decline",
-      reply: "Cảm ơn bạn đã dành tình cảm cho mình nha... Nhưng thật lòng mình thấy tụi mình hợp làm bạn bè hơn. Mình rất trân trọng những lần nói chuyện vui vẻ, hy vọng tụi mình vẫn giữ được tình bạn thoải mái này nhé!",
+      status: "friendzone_fail",
+      reply: "Cảm ơn bạn đã dành tình cảm cho mình nha... Nhưng thật lòng mình thấy tụi mình hợp làm bạn bè thân thiết hơn. Mình rất trân trọng những lần nói chuyện vui vẻ, hy vọng tụi mình vẫn giữ được tình bạn thoải mái này nhé!",
       emoji: "🤝",
       ancientComment: "Duyên chưa đủ chín, lòng người chưa rung động sâu sắc. Chấp nhận lời từ chối một cách lịch thiệp cũng là một nét đẹp bản lĩnh."
     };
-  } else if (impression < 9) {
-    return {
-      status: "need_time",
-      reply: "Mình thật sự rất quý bạn và thích nói chuyện cùng bạn... Nhưng cho mình thêm chút thời gian nhé, mình muốn tụi mình tìm hiểu nhau thêm một thời gian nữa để cả hai cùng chắc chắn về cảm xúc của mình nè ✨",
-      emoji: "⏳",
-      ancientComment: "Tình cảm cần thời gian đơm hoa kết trái. Đối phương thận trọng chính là trân trọng mối quan hệ này."
-    };
-  } else {
-    return {
-      status: "accept",
-      reply: "Mình cũng đã chờ câu nói này từ bạn lâu lắm rồi... Cảm ơn bạn vì suốt thời gian qua đã luôn kiên nhẫn, tinh tế và tôn trọng mình nhé. Mình đồng ý cùng bạn bước tiếp! ❤️✨",
-      emoji: "💍",
-      ancientComment: "Chân thành vi bản, tinh tế vi tâm. Toàn bộ hành trình vừa qua đã chứng minh tấm chân tình của đại hiệp!"
-    };
   }
+
+  // THÀNH CÔNG RỰC RỠ: Hai nhân vật chính thức đến với nhau!
+  const isPoetic = choice && choice.id === "D";
+  return {
+    status: "accept_success",
+    reply: isPoetic
+      ? "Hahaha đại hiệp mượn lời văn vẻ ghê á! Cơ mà nghe ngọt ngào và chân thành lắm... Em cũng đã chờ câu nói này từ anh lâu lắm rồi. Em đồng ý cùng anh viết tiếp những trang sau! 🌸❤️"
+      : "Em cũng đã chờ câu nói này từ anh lâu lắm rồi... Từ cái ngày gặp nhau ở thư viện, qua bao nhiêu tin nhắn, những lúc em mệt mỏi nhất anh luôn ở bên cạnh dịu dàng và tôn trọng em. Em đồng ý làm người yêu anh! ❤️✨",
+    emoji: "💍",
+    ancientComment: "Chân thành vi bản, tinh tế vi tâm! Toàn bộ hành trình vừa qua đã chứng minh tấm chân tình son sắt. Hai người chính thức nên duyên, hoa nở trọn vẹn!"
+  };
 };
 
-// 5 Câu hỏi Mini-game Thực chiến Phản Xạ (Thiết kế các lựa chọn có trade-off, không có đáp án ngớ ngẩn lộ liễu)
+// 5 Câu hỏi Mini-game Thực chiến Phản Xạ
 window.MINIGAME_QUESTIONS = [
   {
     id: 1,
@@ -527,122 +554,114 @@ window.MINIGAME_QUESTIONS = [
         skill: "Phòng vệ phản xạ"
       },
       {
-        text: "Haha đúng rồi đó, anh hot boy trường mà! Nhưng em may mắn được anh để ý đấy nhé.",
+        text: "Haha đúng rồi đó, anh hot boy trường mà! Nhưng em may mắn được anh để ý rồi đấy nhé.",
         score: 0,
         tier: "poor",
-        feedback: "Đùa quá đà biến thành tự mãn và trịch thượng.",
+        feedback: "Kiêu căng tự phụ, biến lời khen thành sự trịch thượng phản cảm.",
         reaction: "🙄",
-        skill: "Thiếu khiêm tốn"
+        skill: "Tự cao tự đại"
       }
     ]
   },
   {
     id: 2,
-    prompt: "Cú lừa 23:00 đêm: 'Anh ơi, em đang đứng dưới cổng trọ anh nè, xuống mở cửa đi!'",
+    prompt: "Thảo gửi ảnh một chiếc váy xòe hoa nhí: 'Chiếc váy này xinh ghê mà giá hơi chát, tiếc ghê á anh :('",
     timeLimit: 10,
-    girlVoice: "Em đang dưới cổng nhà anh nè, mở cửa đi!",
+    girlVoice: "Chiếc váy này xinh ghê mà giá hơi chát á anh...",
     choices: [
       {
-        text: "Ủa thật không đó? Trọ anh có cổng sắt khóa 2 lớp, em đọc đúng màu cổng anh phi xuống liền haha!",
+        text: "Màu hoa nhí này tôn da Thảo lắm nè! Cuối tuần này mình đi thử xem có vừa vặn không, nếu ưng ý tự thưởng mừng thi xong cũng xứng đáng mà!",
         score: 3,
         tier: "excellent",
-        feedback: "Tỉnh táo bắt bài cú lừa đêm khuya một cách hóm hỉnh và đáng yêu!",
-        reaction: "🤣",
-        skill: "Ứng biến nhanh & Hóm hỉnh"
+        feedback: "Khen ngợi gu thẩm mỹ, rủ đi trải nghiệm thực tế mà không tạo áp lực tài chính gượng gạo!",
+        reaction: "😍",
+        skill: "Quan tâm tinh tế & Khen ngợi đúng gu"
       },
       {
-        text: "Nếu là thật thì anh chạy xuống ngay, còn nếu em trêu thì anh đã pha sẵn trà ấm trong tưởng tượng đợi em rồi!",
-        score: 2,
-        tier: "good",
-        feedback: "Khéo léo, vừa ngọt ngào vừa cho thấy mình biết nàng đang trêu.",
-        reaction: "✨",
-        skill: "Linh hoạt ngôn từ"
-      },
-      {
-        text: "Chạy vội xuống mở cửa ngay trong đêm mà không kịp kiểm tra điện thoại.",
+        text: "Thích thì anh mua tặng em liền, mấy triệu bạc anh lo được hết, em khỏi cần tiếc!",
         score: 1,
         tier: "neutral",
-        feedback: "Rất nhiệt tình nhưng dễ bị nàng bắt bài trêu ghẹo 'quê độ'.",
-        reaction: "😜",
-        skill: "Nhiệt tình bộc phát"
+        feedback: "Vung tiền quá sớm khi chưa là gì của nhau dễ khiến đối phương ngại ngùng và có cảm giác nợ nần.",
+        reaction: "😅",
+        skill: "Vung vật chất thiếu ranh giới"
       },
       {
-        text: "Khuya rồi em đến làm gì vậy? Mai còn đi học đi làm mà, nghịch quá à nha.",
+        text: "Đắt thế thì thôi em ơi, quần áo mặc vài lần là chán, để tiền ăn uống sướng hơn nhiều.",
         score: 0,
         tier: "poor",
-        feedback: "Quá nghiêm nghị và cứng nhắc, dập tắt bầu không khí vui vẻ.",
-        reaction: "🤦‍♀️",
-        skill: "Cứng nhắc thiếu linh hoạt"
+        feedback: "Dội gáo nước lạnh vào sở thích làm đẹp của con gái, thiếu cảm xúc trầm trọng.",
+        reaction: "😒",
+        skill: "Áp đặt quan điểm tiêu dùng"
+      },
+      {
+        text: "Công nhận mẫu này phối màu vintage đẹp thật. Để anh lưu lại tiệm này, hôm nào rảnh anh chở em qua ngắm thử nha.",
+        score: 2,
+        tier: "good",
+        feedback: "Lắng nghe và ghi nhớ sở thích của nàng, tạo cớ cho một buổi đi chơi tiếp theo.",
+        reaction: "😊",
+        skill: "Ghi nhớ chi tiết"
       }
     ]
   },
   {
     id: 3,
-    prompt: "Nàng vừa cắt tóc ngắn và gửi ảnh: 'Em vừa cắt tóc ngắn nè, nhìn có bị lạ hay ngố quá không anh?'",
-    timeLimit: 10,
-    girlVoice: "Em mới cắt quả tóc này, nhìn có bị ngố không anh?",
+    prompt: "Hai bạn đang ngồi cafe, Thảo vô tình làm đổ một ít trà ra bàn và lúng túng xin lỗi bạn vì sự vụng về.",
+    timeLimit: 8,
+    girlVoice: "Ui em xin lỗi, em vụng về quá làm đổ trà rồi...",
     choices: [
       {
-        text: "Rất hợp luôn á! Tóc này tôn đường nét cằm và mắt em dã man, nhìn vừa cá tính vừa năng động!",
+        text: "Rút khăn giấy lau bàn cùng nàng: 'Không sao đâu nè, tay áo em có bị dính ướt không? Để anh gọi bạn phục vụ lấy thêm khăn lau nhé.'",
         score: 3,
         tier: "excellent",
-        feedback: "Khen cụ thể chi tiết, củng cố sự tự tin cho nàng đúng tâm lý!",
-        reaction: "😍",
-        skill: "Khen ngợi chân thành & Quan sát chi tiết"
-      },
-      {
-        text: "Xinh lắm nha! Tóc cũ dịu dàng còn tóc này nhìn trẻ trung, anh thấy phong cách nào em cũng hợp.",
-        score: 2,
-        tier: "good",
-        feedback: "Lời khen an toàn, tích cực, giúp nàng an tâm với diện mạo mới.",
+        feedback: "Ưu tiên quan tâm đến sự an toàn và cảm giác của đối phương trước khi xử lý sự cố!",
         reaction: "🥰",
-        skill: "Khích lệ tích cực"
+        skill: "Xử lý khủng hoảng & Chu đáo"
       },
       {
-        text: "Nhìn hơi lạ mắt xíu nhưng nhìn lâu chắc quen, con gái thích thay đổi là chuyện bình thường mà.",
-        score: 1,
-        tier: "neutral",
-        feedback: "Hơi trung lập, chưa đủ nhiệt tình để giải tỏa sự lo lắng của nàng.",
-        reaction: "🙂",
-        skill: "Thận trọng quá mức"
+        text: "Cười nhẹ: 'Điềm lành đấy cô nương! Trà tràn là tài lộc tràn trề, để anh lau giúp cho.'",
+        score: 3,
+        tier: "excellent",
+        feedback: "Hài hước hóa sự cố thành điềm may mắn, giải tỏa 100% cảm giác tội lỗi của nàng!",
+        reaction: "😆",
+        skill: "Biến nguy thành an & Dí dỏm"
       },
       {
-        text: "Anh thấy tóc dài hồi trước hợp với em hơn nhiều, tự nhiên cắt ngắn đi nhìn lạ hoắc.",
+        text: "Trời ơi cẩn thận tí chứ em, suýt nữa là ướt điện thoại của anh rồi đấy!",
         score: 0,
         tier: "poor",
-        feedback: "Chê thẳng thừng khi người ta đã cắt xong, làm nàng tụt cảm xúc nặng nề.",
-        reaction: "😤",
-        skill: "Thiếu tinh tế cảm xúc"
+        feedback: "Cáu gắt và đặt tài sản cá nhân lên trên sự bối rối của đối phương, cực kỳ mất điểm.",
+        reaction: "🥺",
+        skill: "Cáu bẳn & Thiếu bao dung"
+      },
+      {
+        text: "Ngồi yên nhìn nàng tự lau: 'Không sao đâu, em cứ lau từ từ đi kẻo nước chảy xuống sàn.'",
+        score: 1,
+        tier: "neutral",
+        feedback: "Thiếu tính hiệp sĩ và sự chủ động giúp đỡ khi đối phương đang bối rối.",
+        reaction: "😐",
+        skill: "Thụ động thờ ơ"
       }
     ]
   },
   {
     id: 4,
-    prompt: "Tan tầm đói bụng, nàng than: 'Em đói bụng quá mà nghĩ mãi không biết nên ăn món gì hết trơn...'",
+    prompt: "17:30 chiều tan làm, Thảo nhắn: 'Hôm nay công ty chạy sự kiện đói lả cả người, thèm ăn cái gì đó ấm nóng ghê...'",
     timeLimit: 10,
-    girlVoice: "Đói xỉu mà không biết ăn gì giờ...",
+    girlVoice: "Hôm nay em đói lả cả người, thèm cái gì ấm nóng ghê...",
     choices: [
       {
-        text: "Anh gợi ý 2 món: Phở cuốn thanh đạm mát mẻ hoặc gà nướng cay ấm bụng. Em đang nghiêng về vị thanh hay vị đậm nè?",
+        text: "Thảo thích ăn súp cua nóng hay hủ tiếu mì? Đang tiện đường về anh tạt qua mua mang qua cổng trọ cho em luôn nè!",
         score: 3,
         tier: "excellent",
-        feedback: "Quyết đoán nhưng tôn trọng: thu hẹp thành 2 lựa chọn cụ thể để nàng dễ chọn!",
-        reaction: "🤤",
-        skill: "Hỗ trợ ra quyết định & Tinh tế"
+        feedback: "Đưa ra 2 lựa chọn cụ thể và chủ động ra tay giải quyết cơn đói, cực kỳ ấm áp!",
+        reaction: "🥹",
+        skill: "Quan tâm bằng hành động thiết thực"
       },
       {
-        text: "Để anh mở app ship ngay hộp cháo sườn nóng hổi tới chỗ em nhé, đói là không được nhịn đâu!",
-        score: 2,
-        tier: "good",
-        feedback: "Chủ động hành động, thể hiện sự quan tâm trực tiếp.",
-        reaction: "🥰",
-        skill: "Hành động quan tâm"
-      },
-      {
-        text: "Hay em thử lướt app giao hàng xem quanh đó có quán nào đang giảm giá không nè?",
+        text: "Đói thì lên app đặt đồ ăn đi em, giờ này nhiều mã giảm giá lắm á.",
         score: 1,
         tier: "neutral",
-        feedback: "Lời khuyên hữu ích nhưng không giải quyết được cảm giác bế tắc 'không biết ăn gì'.",
+        feedback: "Lời khuyên thực tế nhưng khô khan, thiếu sự săn sóc của người quan tâm.",
         reaction: "🤷‍♀️",
         skill: "Chỉ dẫn thông thường"
       },
@@ -650,9 +669,17 @@ window.MINIGAME_QUESTIONS = [
         text: "Ăn gì chả được em, tùy em chọn chứ anh ở xa sao biết em thích ăn gì lúc này.",
         score: 0,
         tier: "poor",
-        feedback: "'Ăn gì chả được' - câu trả lời gây ngán ngẩm hàng đầu khi đối phương đang đói!",
+        feedback: "'Ăn gì chả được' — câu trả lời gây ngán ngẩm hàng đầu khi đối phương đang đói!",
         reaction: "🙄",
         skill: "Vô cảm & Thờ ơ"
+      },
+      {
+        text: "Cố lên cô bé! Về nhà tắm rửa nghỉ ngơi rồi anh chở đi ăn tô phở bò nóng hổi hồi sức nha!",
+        score: 3,
+        tier: "excellent",
+        feedback: "Động viên tinh thần kèm một lời hẹn ấm lòng ngay trong buổi tối!",
+        reaction: "😍",
+        skill: "Chăm sóc & Tiếp sức"
       }
     ]
   },

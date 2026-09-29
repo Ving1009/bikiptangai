@@ -337,16 +337,14 @@
   color: var(--seal-red);
   letter-spacing: 0.5px;
   margin-bottom: 2px;
+  display: none; /* Ẩn chữ đỏ gợi ý — tăng tính phân vân */
 }
 
 .choice-text {
   font-size: 12px;
   line-height: 1.35;
   color: var(--ink-primary);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  /* Bỏ line-clamp: hiển thị toàn bộ nội dung lựa chọn */
 }
 
 /* Trạng thái đã chọn & Cho phép chọn lại */
@@ -393,42 +391,65 @@
   letter-spacing: 0.3px;
 }
 
-/* Bình Chú Cổ Thư Xuất Hiện Sau Lựa Chọn */
-.ancient-comment-box {
-  margin-top: 8px;
-  background: linear-gradient(135deg, #fff7eb 0%, #faecd5 100%);
+/* Bình Chú Cổ Thư - TRANG TRÁI */
+.ancient-comment-box-left {
+  margin-top: 12px;
+  background: linear-gradient(135deg, #fffcf5 0%, #f7ecd6 100%);
   border: 1px solid #d4af37;
-  border-left: 3px solid var(--seal-red);
-  padding: 8px 12px;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  animation: fadeIn 0.4s ease forwards;
+  border-left: 4px solid var(--seal-red);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  box-shadow: 
+    0 3px 10px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  animation: ancientCommentSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  flex-shrink: 0;
+}
+
+@keyframes ancientCommentSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .ancient-comment-header {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
+  gap: 7px;
+  font-size: 11.5px;
   font-weight: 700;
   color: var(--seal-red);
-  margin-bottom: 3px;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
 }
 
 .seal-mini {
   background: var(--seal-red);
   color: #fff;
-  padding: 1px 4px;
+  padding: 1px 5px;
   border-radius: 2px;
-  font-size: 9px;
+  font-size: 10px;
   font-family: var(--font-calligraphy);
+  box-shadow: 0 1px 3px var(--seal-glow);
+}
+
+.ancient-comment-title {
+  font-family: var(--font-title);
+  font-size: 12px;
+  color: var(--seal-red-dark);
 }
 
 .ancient-comment-content {
-  font-size: 12px;
+  font-size: 12.5px;
   font-style: italic;
-  color: #4a3828;
-  line-height: 1.4;
+  color: #3e2e1e;
+  line-height: 1.5;
+  font-family: var(--font-serif);
 }
 
 /* Nút LẬT SANG TRANG TIẾP THEO */
