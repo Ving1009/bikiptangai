@@ -1,10 +1,11 @@
 /**
  * BÍ KÍP TÁN GÁI - 7 Tình Huống Kể Chuyện Tương Tác Liên Hoàn
  * Nhân vật: BẠN & THANH THẢO
- * Hành trình: Gặp gỡ tại thư viện -> Tin nhắn đầu tiên -> Vượt qua thử thách ->
- *            Gặp lại sau thi -> Buổi hẹn đầu tiên -> Làm điểm tựa thấu cảm -> Lời tỏ tình ven hồ.
- * Logic: Nếu đi đúng hướng (tôn trọng, thấu cảm, chân thành) -> Hai người đến với nhau.
- *        Nếu đi sai hướng (áp đặt, kể công, né tránh, thiếu tôn trọng) -> Thất bại.
+ * 
+ * Thiết kế giao diện:
+ * - `text`: Tóm tắt đại khái ý định / cách ứng xử (ngắn gọn, vừa vặn trên thẻ lựa chọn)
+ * - `playerMessage`: Toàn bộ lời thoại chi tiết, tự nhiên xuất hiện trong bong bóng chat
+ * - `girlReply`: Phản hồi cảm xúc tương ứng của Thanh Thảo
  */
 
 window.SCENARIOS_DATA = [
@@ -25,7 +26,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Chủ động giúp đỡ",
-        text: "Bạn thử xóa thiết bị cũ trong danh sách Bluetooth rồi ghép lại từ đầu xem, nhiều khi bị kẹt cache cũ đó. Cần mình hỗ trợ không?",
+        text: "Hướng dẫn xóa cache kết nối Bluetooth và ngỏ ý giúp đỡ",
         playerMessage: "Bạn thử xóa thiết bị cũ trong Bluetooth rồi ghép lại từ đầu xem, nhiều khi bị kẹt cache kết nối cũ đó. Cần mình hỗ trợ gì không?",
         girlReply: "Ui may quá được rồi nè! Mình loay hoay nãy giờ ngại ghê á. Cảm ơn bạn nhiều nha, bạn chu đáo thật đấy! ✨",
         girlReactionEmoji: "🥰",
@@ -37,7 +38,7 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Gợi ý gián tiếp",
-        text: "Góc phòng bên kia có bàn cắm tai nghe có dây dự phòng đó bạn, nếu gấp thì qua đó cắm tạm xem sao.",
+        text: "Chỉ góc phòng có bàn cắm tai nghe có dây dự phòng",
         playerMessage: "Góc phòng bên kia có bàn cắm tai nghe có dây dự phòng của thư viện đó bạn, nếu gấp thì qua đó cắm tạm xem sao.",
         girlReply: "Dạ để mình ngó thử xem sao... Cảm ơn bạn đã chỉ nhé! 🙂",
         girlReactionEmoji: "🙂",
@@ -49,7 +50,7 @@ window.SCENARIOS_DATA = [
       {
         id: "C",
         tag: "Khoe mẽ giải pháp",
-        text: "Dùng tạm tai nghe chống ồn xịn này của mình đi, hàng cao cấp nghe bao êm khỏi lo lỗi kết nối linh tinh!",
+        text: "Bảo nàng lấy tai nghe chống ồn xịn của mình dùng tạm",
         playerMessage: "Dùng tạm tai nghe chống ồn xịn này của mình đi bạn ơi! Hàng cao cấp nghe êm ru khỏi lo lỗi kết nối linh tinh.",
         girlReply: "Dạ thôi phiền bạn quá, mình cắm dây tạm được rồi, cảm ơn bạn nhé... (quay đi tiếp tục làm việc)",
         girlReactionEmoji: "😅",
@@ -61,7 +62,7 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Pha trò dí dỏm",
-        text: "Bình tĩnh! Bluetooth thời 4.0 đôi khi cũng cần tuyệt chiêu 'tắt đi bật lại' như tivi cổ bạn ơi haha, thử xem sao!",
+        text: "Pha trò về tuyệt chiêu tắt mở tivi cổ để phá tan ngượng ngùng",
         playerMessage: "Bình tĩnh! Bluetooth thời hiện đại nhiều khi cũng cần tuyệt chiêu 'tắt đi bật lại' như tivi cổ bạn ơi haha, thử xem sao!",
         girlReply: "Hahaha đại hiệp cứu nguy kịp thời quá! Bái phục bái phục! Cảm ơn đại hiệp nha =))) 🤣",
         girlReactionEmoji: "😆",
@@ -89,7 +90,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Gợi chuyện kỷ niệm",
-        text: "Chào 'nạn nhân Bluetooth'! Chiều nay Thảo về nộp bài tập nhóm kịp deadline không nè?",
+        text: "Gợi lại chuyện 'nạn nhân Bluetooth' ban chiều để hỏi thăm",
         playerMessage: "Chào 'nạn nhân Bluetooth'! Chiều nay Thảo về nộp bài tập nhóm kịp deadline không nè?",
         girlReply: "Haha trời ơiii đừng nhắc vụ đó nữa quê xỉu! 🙈 Cơ mà may nộp trước hạn 5 phút hú hồn luôn á bạn!",
         girlReactionEmoji: "😆",
@@ -101,7 +102,7 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Hỏi thăm thông thường",
-        text: "Chào Thảo, tối nay bạn có bận gì không? Bạn ăn cơm tối chưa thế?",
+        text: "Hỏi thăm xã giao thông thường: tối nay có bận gì và ăn cơm chưa",
         playerMessage: "Chào Thảo, tối nay bạn có bận gì không? Bạn ăn cơm tối chưa thế?",
         girlReply: "Chào bạn nha, mình ăn rồi nè. Giờ đang lướt mạng xíu thôi à.",
         girlReactionEmoji: "🙂",
@@ -113,7 +114,7 @@ window.SCENARIOS_DATA = [
       {
         id: "C",
         tag: "Thổ lộ ấn tượng sớm",
-        text: "Chiều nay gặp Thảo về làm mình cứ nhớ mãi... Bạn cười duyên làm người ta mất tập trung ghê á.",
+        text: "Khen Thảo cười duyên làm mất tập trung và nhớ mãi",
         playerMessage: "Chiều nay gặp Thảo về làm mình cứ nhớ mãi... Bạn cười duyên làm người ta mất tập trung ghê á.",
         girlReply: "Ủa bạn nói quá rồi nè haha :)) Bạn hay khen các bạn nữ mới quen vậy lắm đúng hông?",
         girlReactionEmoji: "🤨",
@@ -125,7 +126,7 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Kể chuyện tếu táo",
-        text: "Vừa lướt thấy group trường đăng tìm chủ nhân chiếc tai nghe bỏ quên, làm mình giật thót tưởng Thảo haha!",
+        text: "Tếu táo dọa tin tìm tai nghe rơi ở trường làm Thảo hết hồn",
         playerMessage: "Vừa lướt thấy group trường đăng tin tìm khách để quên tai nghe, làm mình giật thót tưởng Thảo cơ đấy haha!",
         girlReply: "Ủa thiệt hả?? Làm mình hết hồn chạy đi lục balo! May quá vẫn còn nguyên =))) Bạn khéo dọa người ta ghê!",
         girlReactionEmoji: "🤣",
@@ -154,7 +155,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Tôn trọng nhịp điệu",
-        text: "Nghe chừng hôm nay Thảo cạn pin năng lượng rồi nè. Bạn nghỉ ngơi sớm cho lại sức nha, khi nào rảnh tụi mình nói chuyện sau cũng được nè!",
+        text: "Nhận biết Thảo đang cạn pin, nhắc nghỉ sớm khi khác nói chuyện",
         playerMessage: "Nghe chừng hôm nay Thảo cạn pin năng lượng rồi nè. Bạn nghỉ ngơi sớm cho lại sức nha, khi nào rảnh tụi mình nói chuyện sau cũng được nè!",
         girlReply: "Ui cảm ơn bạn đã hiểu cho mình nha... Nãy giờ mình đang bị giảng viên mắng vì bài tiểu luận nhóm á, đầu óc căng thẳng quá nên không rep đàng hoàng được. Cảm ơn bạn nhiều vì không phiền lòng nhé 🥺",
         girlReactionEmoji: "🥺",
@@ -166,7 +167,7 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Hỏi rõ nguyên do",
-        text: "Sao nay Thảo nói chuyện cụt lủn vậy? Mình làm gì khiến bạn khó chịu hay giận à?",
+        text: "Hỏi thẳng sao nay nói chuyện cụt lủn, có giận hờn gì không",
         playerMessage: "Sao nay Thảo nói chuyện cụt lủn vậy? Mình làm gì khiến bạn khó chịu hay giận à?",
         girlReply: "Hông có gì đâu bạn ơi... Mình đang mệt xíu thôi. Bạn đừng nghĩ nhiều.",
         girlReactionEmoji: "😐",
@@ -178,7 +179,7 @@ window.SCENARIOS_DATA = [
       {
         id: "C",
         tag: "Gửi meme xoa dịu",
-        text: "Bíp bíp! Hệ thống phát hiện bạn Thảo sắp hết pin. Xin phép gửi một chiếc meme mèo sạc năng lượng haha! [Meme mèo ngủ]",
+        text: "Gửi meme mèo ngộ nghĩnh tiếp năng lượng xoa dịu căng thẳng",
         playerMessage: "Bíp bíp! Hệ thống phát hiện bạn Thảo sắp hết pin. Xin phép gửi một chiếc meme mèo sạc năng lượng haha! [Meme mèo ngủ]",
         girlReply: "Hahaha cute xỉu, đúng lúc mình đang stress nhìn thấy phì cười luôn á! Cảm ơn bạn nha :v",
         girlReactionEmoji: "😹",
@@ -190,7 +191,7 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Để không gian tĩnh lặng",
-        text: "(Thả tim nhẹ nhàng vào tin nhắn và để không gian yên tĩnh cho Thảo ngủ sớm, sáng hôm sau mới hỏi thăm)",
+        text: "Thả biểu cảm nhẹ nhàng, giữ yên tĩnh để Thảo nghỉ ngơi",
         playerMessage: "(Bạn thả biểu cảm nhẹ nhàng và để không gian yên tĩnh cho Thảo nghỉ ngơi)",
         girlReply: "(Sáng hôm sau 07:30) 'Hôm qua mình mệt quá ngủ quên mất tiêu, chúc bạn ngày mới nhiều năng lượng nha!'",
         girlReactionEmoji: "🌤️",
@@ -219,7 +220,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Rủ ăn vặt quen thuộc",
-        text: "Gần trường có quán kem bơ dừa nướng ngon đỉnh chóp. Mình tính ghé ăn xả stress, Thảo có muốn lập team cùng đi luôn không nè?",
+        text: "Rủ ghé quán kem bơ dừa nướng gần trường ăn xả stress",
         playerMessage: "Gần trường có quán kem bơ dừa nướng ngon xỉu á. Mình tính ghé ăn xả stress nè, Thảo có muốn lập team cùng đi luôn không?",
         girlReply: "Trời ơiii kem bơ dừa nướng là món ruột của tui luôn á! Đi liền đi liền, đói meo từ trưa tới giờ rồi nè! 🍨🤩",
         girlReactionEmoji: "🤩",
@@ -231,7 +232,7 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Hẹn chung chung",
-        text: "Chúc mừng Thảo nha! Hôm nào rảnh rỗi tụi mình rủ nhau đi ăn mừng sau cũng được nè.",
+        text: "Hẹn hôm nào rảnh rỗi tụi mình rủ nhau đi cafe ăn mừng sau",
         playerMessage: "Chúc mừng Thảo nha! Hôm nào rảnh tụi mình đi cafe ăn mừng sau nha.",
         girlReply: "Uhm oke nè, để xem cuối tuần này mình có vướng lịch gì không rồi tính sau nha.",
         girlReactionEmoji: "🙂",
@@ -243,7 +244,7 @@ window.SCENARIOS_DATA = [
       {
         id: "C",
         tag: "Áp đặt lịch trình",
-        text: "Tối nay 19h mình qua đón Thảo đi ăn nhà hàng nướng sang chảnh mừng thi xong nhé. Cứ để mình lo hết, bạn không cần chuẩn bị gì đâu!",
+        text: "Bảo tối nay qua đón đi nhà hàng nướng sang chảnh ăn mừng",
         playerMessage: "Tối nay 19h mình qua đón Thảo đi ăn đồ nướng sang xịn nhé. Bạn không cần lo gì hết, mình đặt bàn sẵn rồi đó!",
         girlReply: "À... cảm ơn ý tốt của bạn nha, nhưng tối nay mình có hẹn ăn cơm với cả nhà rồi á. Với lại tụi mình đi ăn vặt bình thường cho tiện hơn nha.",
         girlReactionEmoji: "😅",
@@ -255,7 +256,7 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Đi bộ trò chuyện",
-        text: "Mình cũng đang đi bộ ra trạm xe buýt nè, đi cùng một đoạn nói chuyện cho vui, kể nghe thi cử làm bài ổn không?",
+        text: "Đồng hành đi bộ ra trạm xe buýt và hỏi thăm chuyện thi cử",
         playerMessage: "Mình cũng đang đi bộ ra trạm xe buýt nè, đi cùng một đoạn nói chuyện cho vui, kể mình nghe thi cử làm bài ổn không?",
         girlReply: "Haha đi chung đi! Cảm giác lâu lắm mới thở phào được, tuần rồi ôn thi căng thẳng muốn xỉu luôn á bạn ơi...",
         girlReactionEmoji: "🤗",
@@ -284,7 +285,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Lên lịch trình theo gu",
-        text: "Bên Bảo tàng Mỹ thuật đang có triển lãm ảnh phim Sài Gòn xưa đúng gu Thảo nè. Chiều Thứ Bảy rảnh tụi mình cùng đi ngắm ảnh rồi làm ly nước nha? Nếu bận việc gia đình thì dịp khác cũng hoàn toàn thoải mái nè!",
+        text: "Mời đi triển lãm ảnh phim Sài Gòn xưa chiều Thứ Bảy và mở đường lui",
         playerMessage: "Bên Bảo tàng Mỹ thuật đang có triển lãm ảnh phim đúng gu Thảo nè. Chiều Thứ Bảy bạn rảnh không, tụi mình cùng đi dạo xem ảnh rồi làm ly nước? Nếu cuối tuần bạn vướng lịch gia đình thì để dịp khác cũng hoàn toàn thoải mái nha!",
         girlReply: "Oa triển lãm đó mình đang tính rủ bạn nào đi chung luôn á!! Trùng hợp ghê! Thứ Bảy từ 15h mình rảnh nè, chốt kèo nha bạn ơiii! ✨🎨",
         girlReactionEmoji: "🎉",
@@ -296,7 +297,7 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Rủ bâng quơ",
-        text: "Hay là cuối tuần này Thảo rảnh thì tụi mình đi cafe chơi nhé, rảnh giờ nào hú mình giờ đó nha!",
+        text: "Rủ bâng quơ khi nào rảnh thì đi cafe, rảnh lúc nào hú lúc đó",
         playerMessage: "Hay là hôm nào rảnh tụi mình đi cafe chơi nha Thảo, rảnh lúc nào hú mình lúc đó nè.",
         girlReply: "Uhm oke nè, để xem cuối tuần này mình có vướng học thêm gì không rồi mình báo bạn sau nha.",
         girlReactionEmoji: "🙂",
@@ -308,7 +309,7 @@ window.SCENARIOS_DATA = [
       {
         id: "C",
         tag: "Sắp xếp độc đoán",
-        text: "Thứ Bảy mình lên lịch rồi: 14h đón Thảo đi cafe sang, 16h xem phim rạp, 18h ăn tối. Cứ theo lịch mình nhé!",
+        text: "Lên lịch trình kín từ cafe sang, xem phim đến ăn tối theo ý mình",
         playerMessage: "Tối Thứ Bảy 19h mình qua đón Thảo đi ăn nhà hàng sang chảnh nhé. Bạn không cần lo gì hết, mình đặt bàn sẵn rồi đó!",
         girlReply: "À... bạn nhiệt tình quá, nhưng mình thích đi đâu đó nhẹ nhàng tự do hơn á. Với lại lịch kín quá làm mình hơi ngộp.",
         girlReactionEmoji: "😅",
@@ -320,7 +321,7 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Khám phá tiệm sách cũ",
-        text: "Gần trường có tiệm sách cũ có ban công hoa giấy chụp ảnh phim thơ mộng lắm. Chiều Thứ Bảy tụi mình ghé khám phá rồi ngồi cafe trò chuyện không Thảo?",
+        text: "Rủ ghé tiệm sách cũ ban công hoa giấy chụp ảnh phim và trò chuyện",
         playerMessage: "Gần trường có tiệm sách cũ có ban công hoa giấy chụp ảnh phim thơ lắm. Chiều Thứ Bảy tụi mình ghé khám phá rồi ngồi cafe trò chuyện không nè?",
         girlReply: "Tiệm sách cũ ban công hoa giấy?? Nghe mê quá vậy nè! Chiều Thứ Bảy 15h tụi mình đi nha, để mình mang theo máy ảnh phim luôn! 📸☕",
         girlReactionEmoji: "🤩",
@@ -348,7 +349,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Lắng nghe & thấu cảm",
-        text: "Nghe thương Thảo ghê... Bao nhiêu áp lực dồn lên một mình bạn lúc này chắc mệt mỏi lắm. Thảo đã cố gắng hết sức rồi mà. Bây giờ bạn muốn trút hết tâm sự ra cho nhẹ lòng, hay muốn nghỉ ngơi yên tĩnh nè? Mình luôn ở đây lắng nghe Thảo nha.",
+        text: "Thấu cảm gánh nặng của nàng, ở bên làm điểm tựa kiên nhẫn lắng nghe",
         playerMessage: "Nghe thương Thảo ghê... Bao nhiêu áp lực dồn lên một mình bạn lúc này chắc mệt mỏi lắm. Thảo đã cố gắng hết sức rồi mà. Bây giờ bạn muốn trút hết tâm sự ra cho nhẹ lòng, hay muốn nghỉ ngơi yên tĩnh nè? Mình luôn ở đây lắng nghe Thảo nha.",
         girlReply: "Cảm ơn bạn nhiều lắm... Đọc tin nhắn của bạn tự dưng mình thấy nhẹ nhõm hơn hẳn á. Cảm ơn vì đã luôn dịu dàng và lắng nghe mình những lúc thế này... Cho mình gọi điện kể bạn nghe một xíu được hông? 🥺❤️",
         girlReactionEmoji: "🥹",
@@ -360,8 +361,8 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Phân tích logic ngay",
-        text: "Theo mình bạn nên lập lại bảng phân chia công việc rõ ràng, rồi gửi mail báo cáo thẳng cho thầy về bạn bỏ nhóm kia để thầy trừ điểm. Phải làm dứt khoát như vậy mới xử lý được vấn đề Thảo à.",
-        playerMessage: "Theo mình bạn nên lập lại bảng phân chia công việc rõ ràng, rồi gửi mail báo cáo thẳng cho thầy về bạn bỏ nhóm kia để thầy trừ điểm. Phải làm việc dứt khoát như vậy mới xử lý được vấn đề Thảo à.",
+        text: "Đưa ra giải pháp phân công lại việc và gửi mail báo cáo trừ điểm bạn kia",
+        playerMessage: "Theo mình bạn nên lập lại bảng phân chia công việc rõ ràng, rồi gửi mail báo cáo thẳng cho thầy về bạn bỏ nhóm kia để thầy trừ điểm. Phải làm dứt khoát như vậy mới xử lý được vấn đề Thảo à.",
         girlReply: "Uhm... mình biết cách xử lý chứ, nhưng lúc này mình đang mệt quá chưa nghĩ nổi tới mấy cái đó. Thôi mình đi ngủ đây, cảm ơn bạn đã khuyên.",
         girlReactionEmoji: "😔",
         softSkills: ["Tư duy giải pháp nhưng sai thời điểm"],
@@ -372,7 +373,7 @@ window.SCENARIOS_DATA = [
       {
         id: "C",
         tag: "Động viên sáo rỗng",
-        text: "Thôi đừng buồn nữa Thảo ơi! Chuyện nhỏ như con thỏ ấy mà, ngoài kia còn bao nhiêu chuyện khó hơn nhiều. Lạc quan lên, cười một cái xem nào!",
+        text: "Khuyên gạt nỗi buồn: chuyện nhỏ như con thỏ, lạc quan cười lên nào",
         playerMessage: "Thôi đừng buồn nữa Thảo ơi! Chuyện nhỏ như con thỏ ấy mà, ngoài kia còn bao nhiêu chuyện khó hơn nhiều. Lạc quan lên, cười một cái xem nào!",
         girlReply: "(Thảo đã xem tin nhắn và một lúc lâu sau chỉ nhắn lại: 'Uhm cảm ơn bạn.')",
         girlReactionEmoji: "🤐",
@@ -384,7 +385,7 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Chăm sóc bằng hành động",
-        text: "Mình vừa đặt một ly trà hoa cúc mật ong ấm kèm chút bánh ngọt đang ship đến cổng trọ Thảo nè. Uống chút ấm bụng rồi ngủ thật ngon nha, ngày mai ngủ dậy đầu óc sẽ sáng suốt hơn!",
+        text: "Đặt trà hoa cúc mật ong ấm và bánh ngọt giao đến cổng trọ Thảo",
         playerMessage: "Mình vừa đặt một ly trà hoa cúc mật ong ấm kèm chút bánh ngọt đang ship đến cổng trọ Thảo nè. Uống chút ấm bụng rồi ngủ thật ngon nha, ngày mai ngủ dậy đầu óc sẽ sáng suốt hơn!",
         girlReply: "Trời ơiii bạn chu đáo quá làm mình xúc động muốn khóc thêm lần nữa á... Shipper vừa gọi mình ra lấy rồi nè. Cảm ơn bạn nhiều nhiều lắm nha! 😭🧋",
         girlReactionEmoji: "😭",
@@ -412,7 +413,7 @@ window.SCENARIOS_DATA = [
       {
         id: "A",
         tag: "Bày tỏ chân thành",
-        text: "Từ cái ngày gặp ở thư viện đến giờ, mỗi khoảnh khắc được trò chuyện cùng Thảo đều làm cuộc sống của mình ý nghĩa hơn rất nhiều. Với mình, Thảo là người vô cùng đặc biệt. Mình muốn được chính thức đồng hành và chăm sóc bạn.",
+        text: "Bày tỏ chân thành: Thảo là người đặc biệt và muốn chính thức đồng hành",
         playerMessage: "Từ cái ngày gặp ở thư viện đến giờ, mỗi khoảnh khắc được trò chuyện cùng Thảo đều làm cuộc sống của mình ý nghĩa hơn rất nhiều. Với mình, bạn là một người vô cùng đặc biệt. Mình muốn được đồng hành và quan tâm Thảo một cách nghiêm túc và chân thành nhất.",
         girlReply: "Mình cũng chờ câu nói này từ bạn lâu lắm rồi... Cảm ơn bạn vì đã luôn kiên nhẫn, tinh tế và dịu dàng với mình nhé! Em đồng ý ❤️✨",
         girlReactionEmoji: "💍",
@@ -424,7 +425,7 @@ window.SCENARIOS_DATA = [
       {
         id: "B",
         tag: "Hạ nhiệt bằng đùa cợt",
-        text: "Haha thì là 'chiến hữu' cùng tiến chứ là gì nữa cô nương ơi, tự nhiên hôm nay hỏi câu sâu sắc khó đỡ ghê haha!",
+        text: "Cười trừ né tránh và bảo nàng chỉ là 'chiến hữu' cùng tiến",
         playerMessage: "Haha thì là 'chiến hữu' cùng tiến chứ là gì nữa cô nương ơi, tự nhiên hôm nay hỏi câu sâu sắc khó đỡ ghê haha!",
         girlReply: "À... ra là 'chiến hữu' thôi hả. Mình hiểu rồi, cảm ơn bạn đã nói rõ cho mình biết nha. (Thảo khẽ nhìn ra mặt hồ, nụ cười thoáng tắt)",
         girlReactionEmoji: "💔",
@@ -436,7 +437,7 @@ window.SCENARIOS_DATA = [
       {
         id: "C",
         tag: "Tỏ tình kiểu kể công",
-        text: "Làm người yêu mình đi Thảo ơi, mình theo đuổi Thảo cả tháng nay tốn bao nhiêu công sức tâm huyết rồi đấy nhé!",
+        text: "Kể công theo đuổi cả tháng tốn bao công sức đòi nàng làm người yêu",
         playerMessage: "Làm người yêu mình đi Thảo ơi, mình theo đuổi bạn cả tháng nay tốn bao nhiêu công sức tâm huyết rồi đấy nhé!",
         girlReply: "Ủa bạn đang kể công với mình đấy à? Tình cảm là chuyện tự nguyện chứ đâu phải hợp đồng đổi chác đâu bạn. Mình thấy hơi thất vọng á.",
         girlReactionEmoji: "😠",
@@ -448,7 +449,7 @@ window.SCENARIOS_DATA = [
       {
         id: "D",
         tag: "Ẩn dụ phong nhã",
-        text: "Bí kíp trên đời có trăm chương, nhưng điều đẹp nhất mình học được chính là sự chân thành khi ở cạnh bạn. Nếu Thảo bằng lòng, mình rất mong được cùng bạn viết tiếp những ngày tháng sau này.",
+        text: "Mượn lời bí kíp: chân thành là tuyệt kỹ đẹp nhất, mong cùng viết tiếp",
         playerMessage: "Bí kíp trên đời có trăm chương, nhưng điều đẹp nhất mình học được chính là sự chân thành khi ở cạnh bạn. Nếu Thảo bằng lòng, mình rất mong được cùng bạn viết tiếp những ngày tháng sau này.",
         girlReply: "Hahaha đại hiệp mượn lời văn vẻ ghê á! Cơ mà nghe ngọt ngào và chân thành lắm... Em đồng ý cùng anh bước tiếp nha! 🌸🥰",
         girlReactionEmoji: "🌸",

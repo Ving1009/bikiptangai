@@ -707,7 +707,12 @@ class App {
 
   scrollChatToBottom() {
     if (this.chatMessagesContainer) {
-      this.chatMessagesContainer.scrollTop = this.chatMessagesContainer.scrollHeight;
+      requestAnimationFrame(() => {
+        this.chatMessagesContainer.scrollTo({
+          top: this.chatMessagesContainer.scrollHeight,
+          behavior: "smooth"
+        });
+      });
     }
   }
 
@@ -862,10 +867,10 @@ class App {
     if (this.nextPageBtn) {
       this.nextPageBtn.classList.remove("hidden");
       this.nextPageBtn.classList.add("pulse-glow");
-      if (typeof this.nextPageBtn.scrollIntoView === "function") {
-        this.nextPageBtn.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
     }
+
+    // Cuộn tin nhắn chat xuống mượt mà để thấy rõ câu trả lời của nàng
+    this.scrollChatToBottom();
   }
 
   showAnalysisFeedback(choice) {
